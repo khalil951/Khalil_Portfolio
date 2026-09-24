@@ -1,0 +1,68 @@
+---
+chapter: 3
+order: 4
+slug: "estatemind"
+title: "EstateMind"
+abstract: "A Tunisian real-estate intelligence platform: explainable ML valuation, a legal RAG assistant over Tunisian law, scraped market data from five listing sites, and price forecasting, behind a Django REST API and React app."
+kind: "project"
+context: "ESPRIT capstone, team lead, team DataNova"
+role: "Team lead"
+stack: ["python", "django", "simplejwt", "postgresql", "sqlite", "catboost", "scikit-learn", "extratrees", "xgboost", "shap", "pytorch", "torchvision", "clip", "sentence-transformers", "chromadb", "openrouter", "mesa", "stripe", "react", "tailwind-css", "recharts"]
+concepts: ["explainability", "leakage-free-training", "retrieval-augmented-generation", "fallback-chain"]
+related: ["xpress-ppm-agent", "ai-research-assistant"]
+links:
+  repo: "https://github.com/khalil951/EstateMind"
+results:
+  measured:
+    - "Appartement (CatBoost): test R² 0.53, train R² 0.99, on 5,312 train / 1,353 test rows."
+    - "Maison (ExtraTrees): test R² 0.49, train R² 1.00, on 1,915 train / 496 test rows."
+    - "Terrain (ExtraTrees): test R² 0.37, train R² 1.00, on 817 train / 162 test rows."
+    - "Global fallback (CatBoost): test R² 0.47, train R² 1.00, on 8,044 train / 2,011 test rows."
+  pending:
+    - "Legal RAG evaluation (retrieval recall@k / precision@k, LLM-as-judge groundedness) — the command exists; no published output yet."
+---
+
+## TL;DR
+
+- **Problem:** Tunisian real-estate valuation, legal research and market analysis are scattered across sources with no unified, explainable tooling.
+- **What I built (as team lead, team DataNova):** An explainable ML valuation pipeline, a <Term id="retrieval-augmented-generation">legal RAG</Term> assistant over Tunisian corporate/securities/tax law, a five-site scraping pipeline, and market forecasting/simulation — behind a Django REST API and React app.
+- **Outcome:** A working capstone platform with measured valuation accuracy (R² 0.37–0.53 depending on property type) and an honestly disclosed overfitting gap.
+
+## Problem & constraints
+
+Tunisian real-estate intelligence — pricing, legal context, market trends — is fragmented. EstateMind unifies valuation, legal Q&A, scraped market data and forecasting behind one platform, built as an ESPRIT capstone by team DataNova.
+
+## Architecture
+
+- **Valuation pipeline:** CLIP (`openai/clip-vit-base-patch32`) zero-shot image verification → TF-IDF description sentiment → per-property-type CatBoost / ExtraTrees models with a global fallback → market comparables → confidence scoring → SHAP price drivers → what-if scenarios. Training is <Term id="leakage-free-training">leakage-free</Term>: no price-derived input features, and neighbourhood price priors are fit on the training fold only, with leave-one-out self-exclusion.
+- **Legal RAG assistant** over Tunisian corporate/securities/tax law (23 articles): `paraphrase-multilingual-mpnet-base-v2` embeddings over a French/Arabic corpus, ChromaDB with a cosine relevance threshold, and a generation <Term id="fallback-chain">fallback chain</Term> — a hosted OpenAI-compatible provider, then OpenRouter, then an extractive fallback built directly from retrieved passages when every LLM is unreachable.
+- **Data acquisition:** scrapers for Mubawab, Tayara, Tecnocasa, Tunisie Annonce and Bigdatis on a shared retry/backoff client, feeding a dedup → wrangle → load pipeline.
+- **Market analytics:** an interactive price/demand heatmap and delegation analytics, delegation/governorate price forecasting, a local rule-based chatbot, and a Mesa multi-agent market simulation.
+- **Platform:** JWT auth with OTP email verification, free/pro/investor plan gating, and Stripe PaymentIntent billing with server-side metadata — after fixing an earlier plan-upgrade bypass.
+
+## Key decisions & tradeoffs
+
+- **Leakage-free training over a higher on-paper score.** Excluding price-derived features and self-excluding a property from its own neighbourhood price prior costs some accuracy but keeps the reported R² honest.
+- **An extractive fallback for the legal assistant.** When every hosted LLM is unreachable, the system still answers from retrieved passages directly rather than failing outright.
+- **Per-property-type models with a global fallback.** Appartement, Maison and Terrain each get their own model; a global CatBoost model covers whatever falls outside those types.
+
+## Results
+
+<Term id="explainability">SHAP</Term>-explained valuation results, per property type (test R² from `training_estateprocessor_results.csv`):
+
+| Scope | Served model | Train rows | Test rows | Test R² | Train R² |
+|---|---|---:|---:|---:|---:|
+| Appartement | CatBoost | 5,312 | 1,353 | 0.53 | 0.99 |
+| Maison | ExtraTrees | 1,915 | 496 | 0.49 | 1.00 |
+| Terrain | ExtraTrees | 817 | 162 | 0.37 | 1.00 |
+| Global fallback | CatBoost | 8,044 | 2,011 | 0.47 | 1.00 |
+
+**Limitation, shown honestly:** the training script itself flags every model `fit_status: overfitting` — train R² is around 0.99–1.00 against test R² of 0.37–0.53. Ridge baselines scored negative R². RMSE/MAE are withheld until their units are confirmed. Legal RAG evaluation numbers aren't published yet.
+
+## Limitations & next steps
+
+Sentiment analysis is still TF-IDF; a planned BERT upgrade isn't built. The legal corpus covers 23 articles and isn't a general real-estate law corpus. The public legal endpoint has no rate limiting yet.
+
+## Links
+
+- [Repository](https://github.com/khalil951/EstateMind)

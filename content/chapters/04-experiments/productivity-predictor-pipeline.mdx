@@ -1,0 +1,20 @@
+---
+chapter: 4
+order: 4
+slug: "productivity-predictor-pipeline"
+title: "Productivity Predictor Pipeline"
+abstract: "An end-to-end machine-learning pipeline that prepares data, trains a garment-worker productivity model, exposes predictions through FastAPI, and presents them in a Streamlit dashboard."
+kind: "study"
+context: "End-to-end machine-learning project"
+stack: ["python", "fastapi", "streamlit", "scikit-learn", "joblib", "pytest", "mlflow", "docker"]
+links:
+  repo: "https://github.com/khalil951/MLOPS_Pipeline"
+---
+
+Predicts garment-worker productivity from operational features — department, team size, targeted productivity, SMV, work in progress, overtime, incentives, idle time, and worker counts. A single entry point handles data preparation, model training and evaluation; FastAPI exposes `/health` and `/predict` endpoints backed by a persisted `productivity_model.joblib` artifact, and a Streamlit dashboard calls the prediction API with a configurable backend URL. Optional MLflow experiment tracking and Docker deployment are documented alongside the test suite.
+
+No evaluation metrics are published for this project yet.
+
+## Links
+
+- [Repository](https://github.com/khalil951/MLOPS_Pipeline)

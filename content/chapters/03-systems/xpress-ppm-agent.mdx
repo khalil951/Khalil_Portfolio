@@ -1,0 +1,63 @@
+---
+chapter: 3
+order: 1
+slug: "xpress-ppm-agent"
+title: "Xpress PPM Agent"
+abstract: "An AI gate-approval agent for RFC's enterprise project-portfolio tool, where deterministic rules — not the LLM — have the final say. A hybrid two-tier design pairs Copilot Studio's conversation layer with a LangGraph and FastAPI orchestration layer that enforces five guardrail rules an LLM cannot override."
+kind: "project"
+status: "MVP"
+role: "AI Engineer Intern"
+period: "Jul–Aug 2026"
+context: "Internship, RFC, Summer 2026"
+stack: ["python", "langgraph", "fastapi", "openrouter", "pydantic", "postgresql", "streamlit", "pytest", "copilot-studio", "dataverse"]
+concepts: ["guardrails", "hybrid-architecture", "fallback-chain"]
+related: ["ai-research-assistant", "estatemind"]
+trace: "langgraph → 5 guardrails → pydantic → 102 tests"
+links:
+  repo: "https://github.com/khalil951/Xpress_PPM_Agent"
+results:
+  observed:
+    - "Deterministic guardrail rules can override the LLM's verdict when a blocking violation fires — the model proposes, the rules dispose."
+    - "A 4-model OpenRouter fallback chain keeps the agent responding when a primary model is unavailable."
+  pending:
+    - "Evaluation run — results pending publication (LLM-as-judge, semantic similarity, weight sweep, BLEU/ROUGE, cross-model agreement, latency)."
+---
+
+## TL;DR
+
+- **Problem:** RFC's Xpress PPM (Dynamics 365 / Power Platform) needed AI-assisted project-request intake and triage, made urgent by Microsoft Project Online's retirement on September 30, 2026.
+- **What I built:** A <Term id="hybrid-architecture">hybrid</Term> two-tier gate-approval agent — Copilot Studio for the conversation, a 5-node LangGraph pipeline for deterministic decisions — flagship of a larger 17-agent tiered portfolio design.
+- **Outcome:** An MVP with a 102-test offline suite; a full evaluation run (LLM-as-judge, BLEU/ROUGE, cross-model agreement, latency) that hasn't been exported yet.
+
+## Problem & constraints
+
+Xpress PPM needed project-request intake and triage assisted by AI, without handing a language model unilateral authority over gate decisions. The retirement of Microsoft Project Online on September 30, 2026 made the timeline non-negotiable.
+
+## Architecture
+
+Two tiers, each doing what it's good at:
+
+- **Tier 1 — Microsoft Copilot Studio**, the conversational surface a project owner interacts with.
+- **Tier 2 — LangGraph + FastAPI**, autonomous and deterministic. Its flagship is the **Gate Approval Agent (C1)**, a 5-node LangGraph pipeline.
+
+Five <Term id="guardrails">deterministic guardrail rules</Term> can block a request outright, overriding whatever the LLM concluded. Output is Pydantic-validated against a fixed schema, and a 4-model OpenRouter <Term id="fallback-chain">fallback chain</Term> keeps the pipeline answering if a model endpoint is down. A synthetic PostgreSQL dataset (50 records) mirrors the real `msdyn_project` / `msdyn_projectrequest` schema, and a three-interface Streamlit app demonstrates the flow end to end.
+
+C1 is one tier of a larger, only-partly-built design: a 17-agent tiered portfolio scoped against Planner Premium's gaps, of which only C1 ships today.
+
+## Key decisions & tradeoffs
+
+- **Hybrid over all-Copilot-Studio.** An earlier all-conversational design couldn't guarantee determinism or testability. Splitting the conversational and decision tiers made both properties possible.
+- **Guardrails outrank the model.** The five blocking rules are checked in code, not asked of the LLM — a request that fails one is rejected regardless of what the model would have said.
+- **Verify endpoints before finalizing a fallback chain.** Two of the original fallback models turned out to have no live endpoints and were swapped out — a lesson about validating a chain's assumptions before relying on them.
+
+## Results
+
+Observed behaviour only — see the frontmatter results above. A full evaluation (LLM-as-judge scoring, semantic similarity, a weight sweep, BLEU/ROUGE, cross-model agreement, and latency) has been run but its results aren't exported yet, so nothing is shown as a number.
+
+## Limitations & next steps
+
+Only the C1 gate-approval agent of the planned 17-agent tiered portfolio is built. Screenshots and an architecture diagram are pending RFC's permission to publish (synthetic data only).
+
+## Links
+
+- [Repository](https://github.com/khalil951/Xpress_PPM_Agent)

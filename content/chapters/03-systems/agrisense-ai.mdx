@@ -1,0 +1,57 @@
+---
+chapter: 3
+order: 2
+slug: "agrisense-ai"
+title: "AgriSense AI"
+abstract: "A LangGraph supervisor of specialist agents that decides when and how much to irrigate date palms, grounded in real weather and soil data plus FAO-56 agronomy — built for desert agriculture, where irrigation decisions need domain knowledge most farmers' tools rarely encode."
+kind: "project"
+status: "In progress"
+context: "Hackathon origin → portfolio build"
+stack: ["python", "langgraph", "fastapi", "fastmcp", "postgresql", "pgvector", "ollama", "langfuse", "nextjs", "typescript", "docker"]
+concepts: ["supervisor-pattern", "retrieval-augmented-generation", "agentic-workflow"]
+related: ["ai-research-assistant"]
+links:
+  repo: "https://github.com/khalil951/Agrisense"
+results:
+  pending:
+    - "No evaluation results yet — the project page shows build progress instead."
+---
+
+## TL;DR
+
+- **Problem:** Water scarcity in desert agriculture; irrigation decisions need ET₀, crop coefficients (Kc) and soil-water balance — domain knowledge most farmers' tools don't encode.
+- **What I built:** A <Term id="supervisor-pattern">LangGraph supervisor</Term> over specialist agents that combines real weather and soil APIs with FAO-56 agronomy to recommend irrigation for date palms.
+- **Outcome:** Sprints 1–5 built (schema, tool servers, decision pipeline, CRUD, chat/history UI), running locally via Docker Compose; no public deployment yet.
+
+## Problem & constraints
+
+Irrigation decisions in desert agriculture depend on reference evapotranspiration (ET₀), crop coefficients (Kc), and a running soil-water balance — domain knowledge that generic farm-tech tools rarely encode. AgriSense targets date palms in Buraydah, Qassim — Saudi Arabia's top date-producing region — using a demo farm at 26.40°N, 44.10°E (~14 km from Buraydah's centre, since SoilGrids has no data for the city-centre point).
+
+## Architecture
+
+A LangGraph <Term id="supervisor-pattern">supervisor</Term> routes work to specialist agents:
+
+- **Weather and soil agents** call custom **FastMCP** tool servers backed by live **Open-Meteo** (weather, soil moisture) and **SoilGrids** (static soil properties) data — no synthetic data, for credibility.
+- **Scheduling nodes** run a FAO-56 ET₀ × Kc water-balance calculation.
+- A **`decision_agent`** uses <Term id="retrieval-augmented-generation">RAG</Term> over agronomy knowledge, retrieved from a PostgreSQL + **pgvector** store with `nomic-embed-text` embeddings served locally by **Ollama**.
+- Farm/crop CRUD, `/recommend`, `/runs`, `/schedules` and `POST /chat` endpoints sit behind a FastAPI backend with a Next.js dashboard/chat/history UI; **Langfuse** is wired in for observability but still commented out.
+
+Everything runs locally via Docker Compose; there's no public deployment yet.
+
+## Key decisions & tradeoffs
+
+- **Date palm first.** Near-constant Kc and Vision 2030 framing made date palms the simpler, more strategically relevant starting crop; alfalfa (multi-cut, dynamic Kc) is planned for phase 2.
+- **pgvector over a dedicated vector database.** At demo scale, reusing the existing PostgreSQL instance was simpler than standing up a separate vector store.
+- **Real APIs over synthetic data.** Open-Meteo and SoilGrids ground the recommendations in real conditions, validated against a published Penman-Monteith date-palm Kc field study.
+
+## Results
+
+No evaluation results exist yet. The project's progress is Sprints 1–5 built: Postgres + pgvector schema, FastMCP weather/soil/ET₀ tools on live data, the LangGraph weather/soil → scheduling pipeline, the RAG-backed decision agent, farm/crop CRUD, the recommend/runs/schedules/chat API surface, and a dashboard/chat/history UI — running locally, no public deployment, Langfuse still commented out.
+
+## Limitations & next steps
+
+No public deployment yet. Alfalfa support (phase 2, dynamic Kc) isn't built. Langfuse observability is wired but not yet enabled.
+
+## Links
+
+- [Repository](https://github.com/khalil951/Agrisense)

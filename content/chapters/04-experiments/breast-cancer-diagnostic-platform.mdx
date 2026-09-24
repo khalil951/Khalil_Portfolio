@@ -1,0 +1,24 @@
+---
+chapter: 4
+order: 2
+slug: "breast-cancer-diagnostic-platform"
+title: "Breast Cancer Diagnostic Platform"
+abstract: "A FastAPI and Streamlit platform combining mammogram image classification, structured-feature machine learning, Grad-CAM explanations, and BI-RADS-aware risk fusion — modelling how a breast-screening decision actually draws on multiple kinds of evidence."
+kind: "study"
+context: "Academic research project"
+stack: ["python", "fastapi", "streamlit", "tensorflow", "scikit-learn", "reportlab", "grad-cam", "jupyter"]
+concepts: ["explainability"]
+links:
+  repo: "https://github.com/khalil951/Breast_Cancer_Detector"
+safety: "Research and educational use only; not a certified medical device or validated diagnostic tool. Outputs require review by a qualified healthcare professional."
+---
+
+Breast screening combines mammogram evidence, structured biopsy/FNA measurements, and a radiologist's BI-RADS assessment. This project models that workflow as one decision-support platform rather than a single classifier.
+
+A CNN pathway (VGG16, ResNet50, EfficientNet-B3/B4, and a custom lightweight CNN) classifies mammograms as benign or malignant with <Term id="explainability">Grad-CAM</Term> heatmaps; a separate tabular pathway runs the 30 structured features from the Wisconsin Diagnostic Breast Cancer dataset schema through a multi-class BI-RADS classifier. A weighted risk-fusion step combines the CNN probability, the ML probability, and the BI-RADS category into `LOW_RISK`, `MODERATE_RISK`, or `HIGH_RISK`. FastAPI serves inference, risk scoring, and PDF report generation; a Streamlit dashboard provides Home, Analysis, and Dashboard views. Training data spans the WDBC tabular set and CBIS-DDSM mammogram imagery.
+
+No model metrics or clinical validation results are published for this project yet.
+
+## Links
+
+- [Repository](https://github.com/khalil951/Breast_Cancer_Detector)

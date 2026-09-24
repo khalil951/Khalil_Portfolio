@@ -1,0 +1,42 @@
+{
+  "name": "khalil-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "predev": "velite",
+    "dev": "next dev",
+    "content:build": "velite build",
+    "content:watch": "velite dev",
+    "build": "npm run content:build && npm run check:todo:content && next build",
+    "postbuild": "npm run check:todo:out",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check:todo:content": "tsx scripts/check-no-todo.mts content",
+    "check:todo:out": "tsx scripts/check-no-todo.mts out"
+  },
+  "dependencies": {
+    "next": "16.3.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@mdx-js/mdx": "3.1.1",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "26.6.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.6",
+    "rehype-autolink-headings": "7.1.0",
+    "rehype-slug": "6.0.0",
+    "remark-gfm": "4.0.1",
+    "tailwindcss": "4.3.3",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.70.1",
+    "velite": "0.4.0",
+    "vitest": "5.0.1"
+  }
+}

@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* Design tokens — docs/04-design-direction.md. Light "Paper" is the default;
+   dark "Night reading" is opt-in via [data-theme="dark"], set before paint
+   by the inline script in layout.tsx. */
+:root {
+  --paper: #fbf8f1;
+  --paper-2: #f3eee3;
+  --ink: #1c1b19;
+  --ink-muted: #5e5a52;
+  --rule: #ddd5c5;
+  --rubric: #9e2b25;
+  --grounded: #2f6b4f;
+  --pending: #8a6200;
+  --concept: #3e4c9b;
+}
+
+:root[data-theme="dark"] {
+  --paper: #15130f;
+  --paper-2: #1d1a15;
+  --ink: #e9e4d8;
+  --ink-muted: #a39d90;
+  --rule: #3a352c;
+  --rubric: #e0735f;
+  --grounded: #6fc19a;
+  --pending: #e2b85a;
+  --concept: #95a1f0;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-rule: var(--rule);
+  --color-rubric: var(--rubric);
+  --color-grounded: var(--grounded);
+  --color-pending: var(--pending);
+  --color-concept: var(--concept);
+
+  --font-text: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-ui: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "Courier New", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: clamp(1.0625rem, 1rem + 0.28vw, 1.1875rem); /* ~17-19px */
+  line-height: 1.6;
+  font-variant-numeric: oldstyle-nums;
+}
+
+table {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.font-ui {
+  font-family: var(--font-ui);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.measure {
+  max-width: 68ch;
+}
+
+/* Drop cap on a chapter's opening paragraph, with a fallback for browsers
+   that don't support initial-letter. */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-text);
+  font-size: 3.4em;
+  line-height: 0.86;
+  padding-right: 0.08em;
+  color: var(--rubric);
+}
+
+@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  .drop-cap::first-letter {
+    float: none;
+    -webkit-initial-letter: 3;
+    initial-letter: 3;
+    padding-right: 0.12em;
+  }
+}
+
+/* Visible focus ring — meaning is never carried by color alone, so this
+   pairs with an outline offset rather than a color-only change. */
+:focus-visible {
+  outline: 2px solid var(--rubric);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--rule);
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}

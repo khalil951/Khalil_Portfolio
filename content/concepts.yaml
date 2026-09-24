@@ -1,0 +1,36 @@
+# Concept nodes for the graph + Index (docs/05). Recurring methodological
+# ideas actually discussed in docs/02–03, for <Term> inline definitions —
+# distinct from concrete tools/libraries, which live in skills.yaml.
+- id: guardrails
+  label: Guardrails
+  definition: "Deterministic rules that can override a model's output rather than merely advise it."
+- id: fail-closed
+  label: Fail closed
+  definition: "A system that defaults to a safe, honest 'I don't know' rather than a confident guess when it lacks grounding."
+- id: hybrid-architecture
+  label: Hybrid architecture
+  definition: "Splitting a system across a conversational tier and a deterministic orchestration tier, so each does what it's best at."
+- id: supervisor-pattern
+  label: Supervisor pattern
+  definition: "A LangGraph pattern where one agent routes work to specialist agents and combines their results."
+- id: attention-mechanism
+  label: Attention mechanism
+  definition: "A model component that learns to weight which parts of the input matter most for a given output step."
+- id: reinforce
+  label: REINFORCE
+  definition: "A policy-gradient method for training non-differentiable choices, such as hard attention, from sampled rewards."
+- id: explainability
+  label: Explainability
+  definition: "Techniques (SHAP, Grad-CAM) that attribute a model's prediction to the inputs that drove it."
+- id: leakage-free-training
+  label: Leakage-free training
+  definition: "Training that excludes any feature or prior derived from the target, so validation performance isn't inflated."
+- id: fallback-chain
+  label: Fallback chain
+  definition: "An ordered sequence of providers or models a system tries in turn when the previous one fails or is unreachable."
+- id: retrieval-augmented-generation
+  label: Retrieval-augmented generation
+  definition: "Grounding a model's answer in retrieved passages, so it can cite sources instead of relying on parametric memory alone."
+- id: agentic-workflow
+  label: Agentic workflow
+  definition: "A pipeline where an LLM plans and calls tools across multiple steps rather than producing one direct completion."

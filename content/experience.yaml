@@ -1,0 +1,38 @@
+# Chapter II timeline — newest first (docs/07). Dates/roles per docs/02
+# "Experience", confirmed 2026-09-24. The CV's outdated "Jul 2026 – Present ·
+# Remote" for RFC is not used (docs/02 explicitly flags it as outdated); the
+# confirmed on-site dates are used instead. Non-measured CV claims (Talan
+# "95% energy target", FelCloud "+20% projected sales") are omitted per the
+# site-copy rule already decided in docs/02.
+- role: "AI Engineer Intern"
+  org: "RFC"
+  location: "Tunis (on-site)"
+  period: "July 1 – August 31, 2026"
+  bullets:
+    - "Worked with the Data & Business Application team to design and build an AI intake-triage agent for Xpress PPM (Dynamics 365 / Power Platform)."
+    - "Used a hybrid two-tier architecture: Copilot Studio for conversational interaction and LangGraph/FastAPI for deterministic workflows."
+  relatedSection: "xpress-ppm-agent"
+- role: "Researcher"
+  org: "Happy City Hub"
+  period: "2026"
+  bullets:
+    - "Worked on research focused on measuring and improving how people experience their cities."
+    - "Focus areas: urban research, data collection, resident engagement, and policy recommendations."
+- role: "Research Software Engineer Intern"
+  org: "Talan Tunisie"
+  period: "Jul–Sep 2024"
+  bullets:
+    - "Led development of DaaS (DNA as a Service), a data-storage concept based on converting data into DNA sequences and embedding it in plants rather than relying on traditional data centers."
+    - "The project received first prize at the Talan Innovation Summer Camp 2024."
+- role: "Data Analyst Intern"
+  org: "FelCloud"
+  period: "Jun–Jul 2023"
+  bullets:
+    - "Analysed cloud-computing providers and developed a customer-persona data generator for testing, machine-learning training, and realistic analysis scenarios."
+    - "Focus areas: dashboards, insight communication, data quality, data analysis, data visualization, and Python OOP."
+- role: "Data Entry Intern"
+  org: "Attijari Bank"
+  period: "2022"
+  bullets:
+    - "Entered and managed financial transaction, customer, and related banking data with a focus on accuracy and data quality."
+    - "Used Excel in a detail-sensitive operational context."

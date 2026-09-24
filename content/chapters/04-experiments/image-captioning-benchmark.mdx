@@ -1,0 +1,36 @@
+---
+chapter: 4
+order: 1
+slug: "image-captioning-benchmark"
+title: "Image Captioning Benchmark"
+abstract: "Comparing Baseline, soft-attention, hard-attention (REINFORCE) and Transformer encoder-decoders for image captioning on Flickr8k — then grown into a small served app fusing the captioner with object detection and OCR."
+kind: "study"
+context: "Academic deep-learning project"
+stack: ["pytorch", "fastapi", "streamlit", "yolov8", "easyocr", "pytest", "jupyter"]
+concepts: ["attention-mechanism", "reinforce"]
+links:
+  repo: "https://github.com/khalil951/Image_Captioning_Multimodel_System"
+results:
+  measured:
+    - "Transformer (ResNet-50 encoder): final loss 1.6427, final BLEU 0.0792, best BLEU 0.0814."
+    - "SAT-Soft: final loss 1.7797, final BLEU 0.0721, best BLEU 0.0721."
+    - "SAT-Hard: final loss 2.0151, final BLEU 0.0667, best BLEU 0.0667."
+    - "Baseline (no attention): final loss 1.8917, final BLEU 0.0616, best BLEU 0.0616."
+---
+
+Four encoder-decoder captioners compared on Flickr8k, corpus BLEU on a 90/10 train/val split: a no-attention baseline, soft attention (<Cite id="xu2015" />), hard attention trained with <Term id="reinforce">REINFORCE</Term> and doubly stochastic regularization, and a Transformer encoder-decoder over a ResNet-50 encoder.
+
+| Model | Final loss | Final BLEU | Best BLEU |
+|---|---:|---:|---:|
+| Transformer (ResNet-50 encoder) | 1.6427 | 0.0792 | 0.0814 |
+| SAT-Soft | 1.7797 | 0.0721 | 0.0721 |
+| SAT-Hard | 2.0151 | 0.0667 | 0.0667 |
+| Baseline (no attention) | 1.8917 | 0.0616 | 0.0616 |
+
+Only BLEU is published for these runs — no METEOR or CIDEr numbers are shown, since none were measured.
+
+The project grew into a small served app: the Transformer captioner behind FastAPI, fused with YOLOv8 object detection and EasyOCR text extraction, in front of a Streamlit UI with a pytest suite.
+
+## Links
+
+- [Repository](https://github.com/khalil951/Image_Captioning_Multimodel_System)

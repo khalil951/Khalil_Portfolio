@@ -1,0 +1,81 @@
+# Skill/tool nodes for the graph + Index. docs/02 "Skills" section + every
+# `stack:` item used across docs/03's 8 projects (every id here must exist so
+# no project's `stack:` array fails Velite's id-resolution validation).
+- { id: python, label: Python, group: "Programming" }
+- { id: java, label: Java, group: "Programming" }
+- { id: javascript, label: JavaScript, group: "Programming" }
+- { id: typescript, label: TypeScript, group: "Programming" }
+
+- { id: nextjs, label: Next.js, group: "Frameworks & Runtime" }
+- { id: fastapi, label: FastAPI, group: "Frameworks & Runtime" }
+- { id: django, label: Django, group: "Frameworks & Runtime" }
+- { id: streamlit, label: Streamlit, group: "Frameworks & Runtime" }
+- { id: react, label: React, group: "Frameworks & Runtime" }
+- { id: tailwind-css, label: Tailwind CSS, group: "Frameworks & Runtime" }
+
+- { id: llms, label: LLMs, group: "Generative AI & Agentic Systems" }
+- { id: rag, label: RAG, group: "Generative AI & Agentic Systems" }
+- { id: langgraph, label: LangGraph, group: "Generative AI & Agentic Systems" }
+- { id: agentic-ai, label: Agentic AI, group: "Generative AI & Agentic Systems" }
+- { id: copilot-studio, label: Microsoft Copilot Studio, group: "Generative AI & Agentic Systems" }
+- { id: prompt-engineering, label: Prompt Engineering, group: "Generative AI & Agentic Systems" }
+- { id: fine-tuning, label: Fine-tuning, group: "Generative AI & Agentic Systems" }
+- { id: hugging-face-transformers, label: Hugging Face Transformers, group: "Generative AI & Agentic Systems" }
+- { id: model-evaluation, label: Model Evaluation, group: "Generative AI & Agentic Systems" }
+- { id: ollama, label: Ollama, group: "Generative AI & Agentic Systems" }
+- { id: openrouter, label: OpenRouter, group: "Generative AI & Agentic Systems" }
+- { id: langfuse, label: Langfuse, group: "Generative AI & Agentic Systems" }
+- { id: fastmcp, label: FastMCP, group: "Generative AI & Agentic Systems" }
+
+- { id: scikit-learn, label: Scikit-learn, group: "Machine Learning & Computer Vision" }
+- { id: tensorflow, label: TensorFlow, group: "Machine Learning & Computer Vision" }
+- { id: pytorch, label: PyTorch, group: "Machine Learning & Computer Vision" }
+- { id: keras, label: Keras, group: "Machine Learning & Computer Vision" }
+- { id: cnns, label: CNNs, group: "Machine Learning & Computer Vision" }
+- { id: feature-engineering, label: Feature Engineering, group: "Machine Learning & Computer Vision" }
+- { id: ml-deployment, label: Deployment, group: "Machine Learning & Computer Vision" }
+- { id: catboost, label: CatBoost, group: "Machine Learning & Computer Vision" }
+- { id: extratrees, label: ExtraTrees, group: "Machine Learning & Computer Vision" }
+- { id: xgboost, label: XGBoost, group: "Machine Learning & Computer Vision" }
+- { id: shap, label: SHAP, group: "Machine Learning & Computer Vision" }
+- { id: clip, label: "CLIP", group: "Machine Learning & Computer Vision" }
+- { id: sentence-transformers, label: Sentence-Transformers, group: "Machine Learning & Computer Vision" }
+- { id: torchvision, label: torchvision, group: "Machine Learning & Computer Vision" }
+- { id: yolov8, label: "YOLOv8", group: "Machine Learning & Computer Vision" }
+- { id: easyocr, label: EasyOCR, group: "Machine Learning & Computer Vision" }
+- { id: grad-cam, label: Grad-CAM, group: "Machine Learning & Computer Vision" }
+
+- { id: pandas, label: Pandas, group: "Data Tools" }
+- { id: numpy, label: NumPy, group: "Data Tools" }
+- { id: matplotlib, label: Matplotlib, group: "Data Tools" }
+- { id: seaborn, label: Seaborn, group: "Data Tools" }
+- { id: power-bi, label: Power BI, group: "Data Tools" }
+- { id: looker-studio, label: Looker Studio, group: "Data Tools" }
+- { id: hadoop, label: Hadoop, group: "Data Tools" }
+- { id: joblib, label: joblib, group: "Data Tools" }
+- { id: mlflow, label: MLflow, group: "Data Tools" }
+- { id: reportlab, label: ReportLab, group: "Data Tools" }
+
+- { id: postgresql, label: PostgreSQL, group: "Databases" }
+- { id: pgvector, label: pgvector, group: "Databases" }
+- { id: chromadb, label: ChromaDB, group: "Databases" }
+- { id: sqlite, label: SQLite, group: "Databases" }
+- { id: mongodb, label: MongoDB, group: "Databases" }
+- { id: mysql, label: MySQL, group: "Databases" }
+
+- { id: git, label: Git, group: "Tools & Platforms" }
+- { id: docker, label: Docker, group: "Tools & Platforms" }
+- { id: linux, label: Linux, group: "Tools & Platforms" }
+- { id: aws, label: "AWS", group: "Tools & Platforms" }
+- { id: ci-cd, label: "CI/CD", group: "Tools & Platforms" }
+- { id: google-vertex-ai, label: Google Vertex AI, group: "Tools & Platforms" }
+- { id: rest-apis, label: REST APIs, group: "Tools & Platforms" }
+- { id: pydantic, label: Pydantic, group: "Tools & Platforms" }
+- { id: pytest, label: pytest, group: "Tools & Platforms" }
+- { id: jupyter, label: Jupyter, group: "Tools & Platforms" }
+- { id: dataverse, label: Dataverse, group: "Tools & Platforms" }
+- { id: mesa, label: Mesa, group: "Tools & Platforms" }
+- { id: stripe, label: Stripe, group: "Tools & Platforms" }
+- { id: recharts, label: Recharts, group: "Tools & Platforms" }
+- { id: simplejwt, label: SimpleJWT, group: "Tools & Platforms" }
+- { id: nasa-mars-photos-api, label: NASA Mars Photos API, group: "Tools & Platforms" }

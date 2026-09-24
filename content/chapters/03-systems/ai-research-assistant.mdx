@@ -1,0 +1,59 @@
+---
+chapter: 3
+order: 3
+slug: "ai-research-assistant"
+title: "AI Research Assistant"
+abstract: "An agentic RAG app that answers AI-engineering questions with citations — and says \"not covered\" instead of guessing. Built around one constraint: fail closed toward honesty, with a structural split between a grounded answer, \"not covered,\" and a technical error."
+kind: "project"
+status: "MVP"
+context: "Personal project"
+stack: ["fastapi", "langgraph", "chromadb", "ollama", "openrouter", "nextjs", "typescript", "tailwind-css"]
+concepts: ["fail-closed", "retrieval-augmented-generation", "agentic-workflow", "fallback-chain"]
+related: ["xpress-ppm-agent", "estatemind"]
+trace: "langgraph → chromadb → fail-closed → 3 answer states"
+links:
+  repo: "https://github.com/khalil951/AI_Research_Assistant"
+  demo: "https://ai-research-assistant-nu-opal.vercel.app"
+results:
+  observed:
+    - "The local judge model sometimes under-judges relevance, which fails closed rather than over-claiming groundedness."
+    - "A \"Key Concepts ranking gap\" affects roughly half of grounded evaluation questions."
+    - "The web-search fallback path has no relevance gate yet."
+  pending:
+    - "An evaluation harness exists (precision@k / recall@k, BLEU/ROUGE, LLM-judge), but no numbers are published yet."
+---
+
+## TL;DR
+
+- **Problem:** General chatbots give confident, uncited, sometimes wrong answers to AI-engineering questions.
+- **What I built:** An agentic RAG app with a hard <Term id="fail-closed">fail-closed</Term> constraint — every answer is either grounded-with-citations, "not covered," or a flagged technical error, never a confident guess.
+- **Outcome:** MVP complete, with graded relevance, failure-path tests, an eval harness, a dual-provider LLM setup, web-search fallback and chat history — plus an honest, publicly documented design-review gap.
+
+## Problem & constraints
+
+Learners asking AI-engineering questions to general-purpose chatbots get answers that sound confident whether or not they're grounded in anything real. This project's core constraint is structural, not cosmetic: every response must resolve to one of three states — a grounded answer with citations, an explicit "not covered," or a visibly flagged technical error.
+
+## Architecture
+
+FastAPI and LangGraph handle agentic routing over a curated knowledge base — 16 files across RAG fundamentals, agentic systems, vector databases and evaluation, each following a 7-section template, backed by a 13-item research backlog. Retrieval runs on **ChromaDB** with `all-MiniLM-L6-v2` embeddings. The LLM layer is dual-provider: **Ollama** (`llama3.2:3b`) as primary, **OpenRouter** as backup — an <Term id="fallback-chain">ADR-tracked decision</Term> (ADR-007) that replaced an earlier Claude API integration. The frontend is Next.js, TypeScript and Tailwind CSS, with a design system borrowing from academic publishing: answer states are encoded by icon, border, label and color together — never color alone.
+
+Product work behind the build includes a PRD, three personas, user stories, an MVP scope, a five-screen spec, and an ADR log.
+
+## Key decisions & tradeoffs
+
+- **Fail closed, structurally.** The three-way answer split isn't a prompt instruction — it's a routing decision the system enforces before generation.
+- **Local-first LLM, cloud fallback.** Ollama keeps the assistant answerable without a network dependency; OpenRouter is there when the local model isn't enough — replacing an earlier direct Claude API integration (ADR-007).
+- **Show the design gap, not just the fix.** A Figma review surfaced 16 findings — including an icon collision between the Uncertain and Error states, and missing focus states — being fixed before the frontend build. Publishing that review is itself a demonstration of the project's honesty principle.
+
+## Results
+
+An evaluation harness exists (precision@k / recall@k, BLEU/ROUGE, LLM-as-judge) but no numbers are published in the repository yet, so results stay in the Pending state. Known, documented limitations: the local judge model sometimes under-judges relevance (by design, it fails closed rather than over-claiming); a "Key Concepts ranking gap" affects roughly half of grounded evaluation questions; the web-search fallback path has no relevance gate yet.
+
+## Limitations & next steps
+
+The 16 Figma findings from the design review are being fixed before the frontend build proceeds further. Whether shadcn/ui is still part of the stack, and whether the live deployment below is public-ready, haven't been confirmed yet.
+
+## Links
+
+- [Repository](https://github.com/khalil951/AI_Research_Assistant)
+- [Live deployment](https://ai-research-assistant-nu-opal.vercel.app)

@@ -1,0 +1,31 @@
+# All candidates ship verified: false — Khalil verifies sources himself
+# (CLAUDE.md rule 6). None render at launch. Chapters II, V and VI have no
+# entry at all: docs/07 gives only a research prompt for those, not actual
+# quote text, so there is nothing to omit-and-log as a blank field — logged
+# instead in docs/06 "Design resources needed" (already present) and
+# BUILD-LOG.md. Chapter.epigraph is optional for exactly this reason.
+- id: preface
+  quote: "The unexamined life is not worth living."
+  author: "Socrates"
+  source: "in Plato's Apology, 38a"
+  verified: false
+- id: ch1
+  quote: "The limits of my language mean the limits of my world."
+  author: "Ludwig Wittgenstein"
+  source: "Tractatus Logico-Philosophicus, 5.6"
+  verified: false
+- id: ch3
+  quote: "What I cannot create, I do not understand."
+  author: "Richard Feynman"
+  source: "on his blackboard at his death, 1988"
+  verified: false
+- id: ch4
+  quote: "All models are wrong, but some are useful."
+  author: "George E. P. Box"
+  source: "attributed"
+  verified: false
+- id: ch7
+  quote: "Our knowledge can only be finite, while our ignorance must necessarily be infinite."
+  author: "Karl Popper"
+  source: "Conjectures and Refutations"
+  verified: false

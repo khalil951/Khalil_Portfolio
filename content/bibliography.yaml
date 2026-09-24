@@ -1,0 +1,8 @@
+# Only works fully identified in docs/03 are cited. "Liu & Brailsford
+# (ICCEE 2023)" is named as a reference for the Image Captioning project but
+# docs/03 gives no title — omitted, logged in docs/06-open-questions.md.
+- id: xu2015
+  authors: "Xu et al."
+  title: "Show, Attend and Tell: Neural Image Caption Generation with Visual Attention"
+  venue: "ICML"
+  year: 2015
