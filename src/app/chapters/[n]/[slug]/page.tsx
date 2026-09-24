@@ -7,6 +7,7 @@ import { ProjectHero } from "@/components/project/ProjectHero";
 import { ResultsBlock } from "@/components/project/ResultsBlock";
 import { Connections } from "@/components/chapter/Connections";
 import { ChapterNav } from "@/components/chapter/ChapterNav";
+import { MiniMap } from "@/components/graph/MiniMap";
 
 export function generateStaticParams() {
   return sections.map((s) => ({ n: String(s.chapter), slug: s.slug }));
@@ -44,6 +45,7 @@ export default async function SectionPage({
   return (
     <ChapterLayout chapter={chapter}>
       <ProjectHero section={section} />
+      <MiniMap sectionRoute={`/chapters/${section.chapter}/${section.slug}`} />
       {body}
       <ResultsBlock
         measured={section.results?.measured}
