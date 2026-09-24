@@ -12,7 +12,7 @@ export function MarginNote({ draft, children }: { draft?: boolean; children: Rea
   }
 
   return (
-    <aside className="margin-note font-text italic text-sm text-ink-muted">
+    <aside className="margin-note skim-hide font-text italic text-sm text-ink-muted">
       <span aria-hidden="true">✎ </span>
       {children}
     </aside>

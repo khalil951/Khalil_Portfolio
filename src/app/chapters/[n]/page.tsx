@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { chapters, sections } from "#site/content";
 import { renderMdx } from "@/lib/mdx";
 import { ChapterLayout } from "@/components/chapter/ChapterLayout";
 import { ChapterOpener } from "@/components/chapter/ChapterOpener";
 import { ChapterNav } from "@/components/chapter/ChapterNav";
+import { Connections } from "@/components/chapter/Connections";
 
 export function generateStaticParams() {
   return chapters.map((c) => ({ n: String(c.number) }));
@@ -28,13 +30,13 @@ export default async function ChapterPage({ params }: { params: Promise<{ n: str
   const chapter = getChapter((await params).n);
   if (!chapter) notFound();
 
-  const body = await renderMdx(chapter.content);
+  const body = await renderMdx(chapter.content, { chapterNumber: chapter.number });
   const childSections = sections
     .filter((s) => s.chapter === chapter.number)
     .sort((a, b) => a.order - b.order);
 
   return (
-    <ChapterLayout chapter={chapter}>
+    <ChapterLayout chapter={chapter} dropCap>
       <ChapterOpener chapter={chapter} />
       {body}
 
@@ -46,15 +48,17 @@ export default async function ChapterPage({ params }: { params: Promise<{ n: str
           <ul className="flex flex-col gap-2">
             {childSections.map((s) => (
               <li key={s.slug}>
-                <a href={`/chapters/${chapter.number}/${s.slug}`} className="font-text hover:underline">
+                <Link href={`/chapters/${chapter.number}/${s.slug}`} className="font-text hover:underline">
                   § {s.section} {s.title}
-                </a>
+                </Link>
                 <p className="text-sm text-ink-muted">{s.abstract}</p>
               </li>
             ))}
           </ul>
         </nav>
       ) : null}
+
+      <Connections route={`/chapters/${chapter.number}`} />
 
       <ChapterNav number={chapter.number} />
     </ChapterLayout>

@@ -13,7 +13,7 @@ export function Figure({
   caption: string;
 }) {
   return (
-    <figure className="my-8">
+    <figure className="skim-hide my-8">
       {/* eslint-disable-next-line @next/next/no-img-element -- static export, figures are pre-sized content assets */}
       <img src={src} alt={caption} className="w-full border border-rule" />
       <figcaption className="font-ui text-sm text-ink-muted mt-2">

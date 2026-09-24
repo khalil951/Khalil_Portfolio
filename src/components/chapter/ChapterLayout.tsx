@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { chapters, sections, type Chapter } from "#site/content";
+import { ContinueReadingTracker } from "@/components/ContinueReadingTracker";
 
 function ChapterToc({ chapter }: { chapter: Chapter }) {
   const childSections = sections
@@ -31,11 +32,25 @@ function ChapterToc({ chapter }: { chapter: Chapter }) {
 }
 
 /** The 3-column → drawer → bottom-bar reading layout (docs/04). */
-export function ChapterLayout({ chapter, children }: { chapter: Chapter; children: ReactNode }) {
+export function ChapterLayout({
+  chapter,
+  children,
+  dropCap = false,
+}: {
+  chapter: Chapter;
+  children: ReactNode;
+  /** Only true chapter bodies get the automatic opening-paragraph drop cap (docs/04) — not project/study section pages. */
+  dropCap?: boolean;
+}) {
   const all = [...chapters].sort((a, b) => a.number - b.number);
 
   return (
     <div className="chapter-grid mx-auto px-4 py-10">
+      <ContinueReadingTracker
+        chapterNumber={chapter.number}
+        chapterTitle={chapter.title}
+        chapterRoman={chapter.roman}
+      />
       <aside className="chapter-toc chapter-toc-desktop">
         <ChapterToc chapter={chapter} />
       </aside>
@@ -56,7 +71,9 @@ export function ChapterLayout({ chapter, children }: { chapter: Chapter; childre
         </div>
       </details>
 
-      <article className="chapter-article">{children}</article>
+      <article className={`chapter-article${dropCap ? " chapter-article--drop-cap" : ""}`}>
+        {children}
+      </article>
     </div>
   );
 }

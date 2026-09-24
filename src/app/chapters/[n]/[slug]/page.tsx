@@ -50,7 +50,7 @@ export default async function SectionPage({
         observed={section.results?.observed}
         pending={section.results?.pending}
       />
-      <Connections related={section.related} />
+      <Connections route={`/chapters/${section.chapter}/${section.slug}`} related={section.related} />
       <ChapterNav number={chapter.number} />
     </ChapterLayout>
   );

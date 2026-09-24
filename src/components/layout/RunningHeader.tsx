@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { SkimToggle } from "@/components/SkimToggle";
 
 /**
  * "Running header as in printed books: book title on the left, chapter title
@@ -27,6 +28,7 @@ export function RunningHeader({ chapterTitle }: { chapterTitle?: string }) {
           <Link href="/contact" className="hover:underline">
             Correspondence
           </Link>
+          <SkimToggle />
           <ThemeToggle />
         </nav>
       </div>

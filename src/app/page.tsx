@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { book, profile } from "#site/content";
 import { KeyFacts } from "@/components/mdx/KeyFacts";
+import { ContinueReading } from "@/components/ContinueReading";
 
 /**
  * Cover (docs/07 front matter): name, headline, subtitle, edition, three
  * actions (Begin reading · Contents · Download CV), key facts visible
- * without scrolling at 1280x720. The Skim mode switch is a Phase 3
- * deliverable (docs/05) — not wired up yet.
+ * without scrolling at 1280x720. The Skim mode switch lives in the
+ * persistent header (RunningHeader) rather than duplicated here.
  */
 export default function CoverPage() {
   return (
@@ -33,6 +34,7 @@ export default function CoverPage() {
           Download CV
         </a>
       </nav>
+      <ContinueReading />
 
       <div className="mt-10">
         <KeyFacts />

@@ -87,10 +87,26 @@ table {
   max-width: 68ch;
 }
 
+/* Build-time §-numbering (components/mdx/mdx-components.tsx createMdxComponents) — never hand-typed. */
+.section-number {
+  font-family: var(--font-ui);
+  color: var(--ink-muted);
+  font-weight: 400;
+  margin-right: 0.4em;
+}
+
+/* Skim mode (docs/07): abstract + key-facts cards only; margin notes and
+   long prose hidden. Headings stay visible as a compact outline. */
+:root[data-skim="true"] .skim-hide {
+  display: none;
+}
+
 /* Drop cap on a chapter's opening paragraph, with a fallback for browsers
    that don't support initial-letter. Applied automatically to the first
-   paragraph of every chapter body (docs/04) — no per-chapter markup needed. */
-.chapter-article > p:first-of-type::first-letter,
+   paragraph of a true chapter body (docs/04) via ChapterLayout's `dropCap`
+   prop — never to project/study section pages, whose first real <p> can
+   land mid-document (e.g. "Problem & constraints"), not at the opening. */
+.chapter-article--drop-cap > p:first-of-type::first-letter,
 .drop-cap::first-letter {
   float: left;
   font-family: var(--font-text);
@@ -101,7 +117,7 @@ table {
 }
 
 @supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
-  .chapter-article > p:first-of-type::first-letter,
+  .chapter-article--drop-cap > p:first-of-type::first-letter,
   .drop-cap::first-letter {
     float: none;
     -webkit-initial-letter: 3;

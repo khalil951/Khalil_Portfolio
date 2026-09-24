@@ -3,7 +3,9 @@ import type { ReactNode } from "react";
 import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
 import { RunningHeader } from "@/components/layout/RunningHeader";
 import { Footer } from "@/components/layout/Footer";
+import { KeyboardShortcuts } from "@/components/search/KeyboardShortcuts";
 import { themeInitScript } from "@/lib/theme";
+import { skimInitScript } from "@/lib/skim";
 import "./globals.css";
 
 const newsreader = Newsreader({
@@ -46,8 +48,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <head>
-        {/* Pre-paint theme script — avoids a flash of the wrong theme. */}
+        {/* Pre-paint theme + skim-mode scripts — avoid a flash of the wrong state. */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: skimInitScript }} />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <a href="#main" className="skip-link font-ui">
@@ -58,6 +61,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <Footer />
+        <KeyboardShortcuts />
       </body>
     </html>
   );
