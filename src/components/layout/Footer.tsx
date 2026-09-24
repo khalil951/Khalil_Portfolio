@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { book } from "#site/content";
 
 /** "Edition 2026 · Tunis", GitHub / LinkedIn / email, Colophon link — docs/04. */
@@ -8,10 +8,10 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-8 font-ui text-sm text-ink-muted flex flex-wrap items-center justify-between gap-4">
         <p>{book.edition}</p>
         <nav aria-label="Footer" className="flex flex-wrap items-center gap-4">
-          <Link href="/colophon" className="hover:underline">
+          <Link href="/colophon" className="tap-target hover:underline">
             Colophon
           </Link>
-          <Link href="/contact" className="hover:underline">
+          <Link href="/contact" className="tap-target hover:underline">
             Correspondence
           </Link>
         </nav>

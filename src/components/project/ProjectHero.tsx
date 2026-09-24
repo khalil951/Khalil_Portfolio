@@ -59,22 +59,22 @@ export function ProjectHero({ section }: { section: Section }) {
       {section.links ? (
         <p className="mt-4 flex flex-wrap gap-x-4 font-ui text-sm">
           {section.links.repo ? (
-            <a href={section.links.repo} className="text-rubric hover:underline">
+            <a href={section.links.repo} className="tap-target text-rubric hover:underline">
               Repository
             </a>
           ) : null}
           {section.links.demo ? (
-            <a href={section.links.demo} className="text-rubric hover:underline">
+            <a href={section.links.demo} className="tap-target text-rubric hover:underline">
               Live deployment
             </a>
           ) : null}
           {section.links.report ? (
-            <a href={section.links.report} className="text-rubric hover:underline">
+            <a href={section.links.report} className="tap-target text-rubric hover:underline">
               Report
             </a>
           ) : null}
           {section.links.slides ? (
-            <a href={section.links.slides} className="text-rubric hover:underline">
+            <a href={section.links.slides} className="tap-target text-rubric hover:underline">
               Slides
             </a>
           ) : null}

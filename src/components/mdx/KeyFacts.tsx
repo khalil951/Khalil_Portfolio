@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { profile, sections } from "#site/content";
 
 /**
@@ -29,7 +29,7 @@ export function KeyFacts() {
         <ul className="flex flex-col gap-0.5">
           {topSystems.map((s) => (
             <li key={s.slug}>
-              <Link href={`/chapters/${s.chapter}/${s.slug}`} className="hover:underline">
+              <Link href={`/chapters/${s.chapter}/${s.slug}`} className="tap-target hover:underline">
                 {s.title}
               </Link>
             </li>
@@ -40,22 +40,22 @@ export function KeyFacts() {
       <dt className="text-ink-muted">Links</dt>
       <dd className="flex flex-wrap gap-x-3">
         {profile.links.github ? (
-          <a href={profile.links.github} className="hover:underline">
+          <a href={profile.links.github} className="tap-target hover:underline">
             GitHub
           </a>
         ) : null}
         {profile.links.linkedin ? (
-          <a href={profile.links.linkedin} className="hover:underline">
+          <a href={profile.links.linkedin} className="tap-target hover:underline">
             LinkedIn
           </a>
         ) : null}
         {profile.links.huggingface ? (
-          <a href={profile.links.huggingface} className="hover:underline">
+          <a href={profile.links.huggingface} className="tap-target hover:underline">
             Hugging Face
           </a>
         ) : null}
         {profile.links.email ? (
-          <a href={`mailto:${profile.links.email}`} className="hover:underline">
+          <a href={`mailto:${profile.links.email}`} className="tap-target hover:underline">
             Email
           </a>
         ) : null}

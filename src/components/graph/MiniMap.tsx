@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { buildGraphData, layoutGraph, neighborhoodOf } from "@/lib/graph";
 import { NodeShape } from "./shapes";
 
@@ -52,7 +52,9 @@ export function MiniMap({ sectionRoute }: { sectionRoute: string }) {
               {shape}
             </a>
           ) : (
-            <g key={node.id} aria-label={node.label}>
+            // aria-label needs an explicit role on a <g> (axe "aria-prohibited-attr") —
+            // "img" is correct here: unlike MapExplorer's nodes, these aren't interactive.
+            <g key={node.id} role="img" aria-label={node.label}>
               {shape}
             </g>
           );

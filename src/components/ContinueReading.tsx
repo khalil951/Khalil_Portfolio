@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { CONTINUE_READING_KEY, type ContinueReadingState } from "@/lib/continueReading";
 
 function subscribe(callback: () => void) {

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import type { Graph } from "@/lib/graph";
 import { NODE_TYPE_LABELS } from "./shapes";
 
@@ -43,7 +43,7 @@ export function GraphList({ graph }: { graph: Graph }) {
                   <div key={node.id}>
                     <dt>
                       {node.href ? (
-                        <Link href={node.href} className="font-text text-base hover:underline">
+                        <Link href={node.href} className="tap-target font-text text-base hover:underline">
                           {node.label}
                         </Link>
                       ) : (
@@ -58,7 +58,7 @@ export function GraphList({ graph }: { graph: Graph }) {
                           return (
                             <span key={id}>
                               {n.href ? (
-                                <Link href={n.href} className="hover:underline hover:text-ink">
+                                <Link href={n.href} className="tap-target hover:underline hover:text-ink">
                                   {n.label}
                                 </Link>
                               ) : (

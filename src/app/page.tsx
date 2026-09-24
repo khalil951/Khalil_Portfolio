@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { book, profile } from "#site/content";
 import { KeyFacts } from "@/components/mdx/KeyFacts";
 import { ContinueReading } from "@/components/ContinueReading";

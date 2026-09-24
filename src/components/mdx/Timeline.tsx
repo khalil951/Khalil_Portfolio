@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { experience } from "#site/content";
 
 /**
@@ -27,7 +27,7 @@ export function Timeline() {
           </ul>
           {entry.relatedSection ? (
             <p className="mt-2 text-sm">
-              <Link href={`/chapters/3/${entry.relatedSection}`} className="hover:underline">
+              <Link href={`/chapters/3/${entry.relatedSection}`} className="tap-target hover:underline">
                 Related project →
               </Link>
             </p>

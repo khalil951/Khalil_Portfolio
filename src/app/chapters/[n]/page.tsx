@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { chapters, sections } from "#site/content";
 import { renderMdx } from "@/lib/mdx";
 import { ChapterLayout } from "@/components/chapter/ChapterLayout";
@@ -48,7 +48,7 @@ export default async function ChapterPage({ params }: { params: Promise<{ n: str
           <ul className="flex flex-col gap-2">
             {childSections.map((s) => (
               <li key={s.slug}>
-                <Link href={`/chapters/${chapter.number}/${s.slug}`} className="font-text hover:underline">
+                <Link href={`/chapters/${chapter.number}/${s.slug}`} className="tap-target font-text hover:underline">
                   § {s.section} {s.title}
                 </Link>
                 <p className="text-sm text-ink-muted">{s.abstract}</p>

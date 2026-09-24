@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { chapters } from "#site/content";
 
 /** Chapter footer: previous / next chapter, and "Return to Contents" (docs/07 anatomy, item 5). */
@@ -13,17 +13,17 @@ export function ChapterNav({ number }: { number: number }) {
       <div className="flex items-center justify-between gap-4 font-ui text-sm">
         <div>
           {prev ? (
-            <Link href={`/chapters/${prev.number}`} className="hover:underline">
+            <Link href={`/chapters/${prev.number}`} className="tap-target hover:underline">
               ← {prev.roman}. {prev.title}
             </Link>
           ) : null}
         </div>
-        <Link href="/contents" className="text-ink-muted hover:underline">
+        <Link href="/contents" className="tap-target text-ink-muted hover:underline">
           Return to Contents
         </Link>
         <div className="text-right">
           {next ? (
-            <Link href={`/chapters/${next.number}`} className="hover:underline">
+            <Link href={`/chapters/${next.number}`} className="tap-target hover:underline">
               {next.roman}. {next.title} →
             </Link>
           ) : null}

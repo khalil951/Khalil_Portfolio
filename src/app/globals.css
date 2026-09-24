@@ -47,6 +47,44 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Chapter change: a short fade and 8px slide (docs/04) — no page-curl
+   effects. Progressive enhancement: browsers without View Transitions
+   support just navigate instantly, no fallback needed. */
+::view-transition-old(root) {
+  animation: 180ms ease-out both book-fade-out, 180ms ease-out both book-slide-out;
+}
+::view-transition-new(root) {
+  animation: 220ms ease-in both book-fade-in, 220ms ease-in both book-slide-in;
+}
+
+@keyframes book-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes book-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes book-slide-out {
+  to {
+    transform: translateY(-8px);
+  }
+}
+@keyframes book-slide-in {
+  from {
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -133,6 +171,25 @@ table {
   outline-offset: 2px;
 }
 
+/* WCAG 2.2 AA 2.5.8 Target Size (Minimum): a tap/click target needs a
+   24x24px hit area, or 24px of space to its nearest neighbour. Caught by
+   the Phase 5 axe audit on nearly every compact link list on the site
+   (Index evidence, Connections, Contents section links, Cover's key-facts
+   links, ...) — all just text-sm links with no padding, ~16-17px tall.
+   A first attempt paired this padding with an equal negative margin to
+   keep layout pixel-for-pixel unchanged — but in tightly-gapped lists that
+   made adjacent targets' padding boxes overlap each other, which axe
+   flags as "partiallyObscured" (an overlapping hit area isn't a clean,
+   unambiguous 24px target even if the CSS box itself is big enough).
+   Real padding with no compensating margin — same pattern already used
+   by SkillGroups' chips, which the audit never flagged — avoids that
+   entirely; the small extra breathing room in these lists is a fine
+   trade for a real fix. */
+.tap-target {
+  display: inline-block;
+  padding: 0.4375rem 0.375rem;
+}
+
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -159,11 +216,32 @@ table {
   max-width: 720px;
 }
 
+/* MarginNote (docs/04): styled as an indented aside at every breakpoint.
+   Zero instances exist in content today (CLAUDE.md rule 6 — Khalil writes
+   these, not this codebase) — a true Tufte sidenote that floats beside its
+   own paragraph in the margin column needs either JS position-matching or
+   per-note manual grid placement, not worth building against no real
+   content yet. This still reads clearly as a margin note, just inline. */
+.margin-note {
+  display: block;
+  border-left: 2px solid var(--rule);
+  padding-left: 0.75rem;
+  margin: 1rem 0;
+}
+
 @media (min-width: 1200px) {
+  /* A genuine 3-column grid (TOC | text | margin), every track hard-capped
+     — not a 1fr track plus a float-with-negative-margin escaping into
+     "extra" viewport space that may not exist. That earlier approach
+     overflowed the viewport at any width where the grid's own max-width
+     (1280px) left no real gutter for the float to expand into — confirmed
+     with a real MiniMap on a real page at exactly 1280px (Phase 5 e2e
+     audit), not just in theory. A grid with only capped tracks can never
+     render wider than the sum of its tracks, so it can't overflow. */
   .chapter-grid {
-    /* 200px TOC + 3rem gap + (70ch text + 300px margin-note reserve) */
-    max-width: 1280px;
-    grid-template-columns: 200px minmax(0, 1fr);
+    max-width: 1216px; /* 200 + 3rem gap + 70ch(~660) + 3rem gap + 260 */
+    grid-template-columns: 200px minmax(0, 70ch) 260px;
+    justify-content: center;
     gap: 3rem;
     align-items: start;
   }
@@ -173,24 +251,15 @@ table {
     top: 5rem;
   }
 
-  .chapter-article {
-    max-width: calc(70ch + 300px);
-  }
-
-  .margin-note,
+  /* MiniMap is the only real user of the margin column today — a single
+     block, not interleaved with prose, so placing it as an actual third
+     grid child (not a float) is both simpler and impossible to overflow. */
   .margin-aside {
-    float: right;
-    clear: right;
-    width: 260px;
-    margin-right: -300px;
-    margin-top: 0.25em;
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
+    grid-column: 3;
   }
 }
 
 @media (max-width: 1199.98px) {
-  .margin-note,
   .margin-aside {
     display: block;
     border-left: 2px solid var(--rule);

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { chapters, concepts, sections, skills, type Chapter, type Section } from "#site/content";
 
 export const metadata: Metadata = { title: "Index" };
@@ -82,7 +82,7 @@ export default function IndexPage() {
             <dd className="mt-1 flex flex-wrap gap-x-2 gap-y-1 text-ink-muted">
               {entry.evidence.map((e, i) => (
                 <span key={e.href}>
-                  <Link href={e.href} className="hover:underline hover:text-ink">
+                  <Link href={e.href} className="tap-target hover:underline hover:text-ink">
                     {e.label}
                   </Link>
                   {i < entry.evidence.length - 1 ? "," : ""}

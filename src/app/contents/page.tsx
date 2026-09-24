@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { chapters, sections } from "#site/content";
 
 export const metadata: Metadata = { title: "Contents" };
@@ -36,7 +36,7 @@ export default function ContentsPage() {
                 <ul className="mt-3 flex flex-col gap-1 font-ui text-sm">
                   {childSections.map((s) => (
                     <li key={s.slug}>
-                      <Link href={`/chapters/${chapter.number}/${s.slug}`} className="hover:underline">
+                      <Link href={`/chapters/${chapter.number}/${s.slug}`} className="tap-target hover:underline">
                         § {s.section} {s.title}
                       </Link>
                     </li>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { sections } from "#site/content";
 import { getBacklinks } from "@/lib/backlinks";
 
@@ -24,7 +24,7 @@ export function Connections({ route, related }: { route: string; related?: strin
       <ul className="flex flex-col gap-1 font-ui text-sm">
         {all.map((link) => (
           <li key={link.href}>
-            <Link href={link.href} className="hover:underline">
+            <Link href={link.href} className="tap-target hover:underline">
               {link.label}
             </Link>
           </li>

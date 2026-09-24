@@ -14,14 +14,20 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "check:todo:content": "tsx scripts/check-no-todo.mts content",
-    "check:todo:out": "tsx scripts/check-no-todo.mts out"
+    "check:todo:out": "tsx scripts/check-no-todo.mts out",
+    "test:e2e": "start-server-and-test \"serve out -p 4173\" http://localhost:4173 \"playwright test\"",
+    "audit:lighthouse": "start-server-and-test \"serve out -p 4173\" http://localhost:4173 \"lhci autorun\""
   },
   "dependencies": {
     "next": "16.3.6",
+    "next-view-transitions": "0.3.5",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@lhci/cli": "0.15.1",
+    "@playwright/test": "1.63.0",
     "@mdx-js/mdx": "3.1.1",
     "@tailwindcss/postcss": "4.3.3",
     "@types/d3-force": "3.0.10",
@@ -31,10 +37,13 @@
     "d3-force": "3.0.0",
     "eslint": "9.39.5",
     "eslint-config-next": "16.3.6",
+    "lighthouse": "13.5.0",
     "pagefind": "1.5.2",
     "rehype-autolink-headings": "7.1.0",
     "rehype-slug": "6.0.0",
     "remark-gfm": "4.0.1",
+    "serve": "14.2.6",
+    "start-server-and-test": "3.0.12",
     "tailwindcss": "4.3.3",
     "tsx": "4.23.15",
     "typescript": "5.9.3",

@@ -43,9 +43,13 @@ export default async function SectionPage({
   const body = await renderMdx(section.content);
 
   return (
-    <ChapterLayout chapter={chapter}>
+    <ChapterLayout
+      chapter={chapter}
+      marginContent={
+        <MiniMap sectionRoute={`/chapters/${section.chapter}/${section.slug}`} />
+      }
+    >
       <ProjectHero section={section} />
-      <MiniMap sectionRoute={`/chapters/${section.chapter}/${section.slug}`} />
       {body}
       <ResultsBlock
         measured={section.results?.measured}

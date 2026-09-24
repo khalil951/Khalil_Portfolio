@@ -131,7 +131,7 @@ export function MapExplorer({ graph, width, height }: { graph: Graph; width: num
         width="100%"
         className="border border-rule rounded-sm bg-paper-2/30 touch-none select-none"
         style={{ height: "min(70vh, 640px)", cursor: isDragging ? "grabbing" : "grab" }}
-        role="img"
+        role="group"
         aria-label="Knowledge graph — see the list below for an accessible equivalent"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}

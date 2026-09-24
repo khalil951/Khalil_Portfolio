@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useTransitionRouter } from "next-view-transitions";
 import { chapters } from "#site/content";
 import { SKIM_STORAGE_KEY } from "@/lib/skim";
 import { SearchModal } from "./SearchModal";
@@ -20,7 +21,7 @@ export function KeyboardShortcuts() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchInstance, setSearchInstance] = useState(0);
   const [helpOpen, setHelpOpen] = useState(false);
-  const router = useRouter();
+  const router = useTransitionRouter();
   const pathname = usePathname();
 
   const toggleSkim = useCallback(() => {

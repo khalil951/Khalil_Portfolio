@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { bibliography } from "#site/content";
 
 /**
@@ -13,7 +13,7 @@ export function Cite({ id }: { id: string }) {
   const authorYear = `${work.authors}, ${work.year}`;
 
   return (
-    <Link href={`/bibliography#${id}`} className="font-ui text-sm text-rubric no-underline hover:underline">
+    <Link href={`/bibliography#${id}`} className="tap-target font-ui text-sm text-rubric no-underline hover:underline">
       ({authorYear})
     </Link>
   );
