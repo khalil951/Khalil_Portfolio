@@ -80,3 +80,17 @@ Last pass: 2026-09-24, checked against `Khalil.CV 3.pdf` and github.com/khalil95
 - `content/epigraphs.yaml` → chapter V epigraph → No quote text exists yet (only a research prompt: a line attributed to Ibn al-Haytham on critically examining what one reads) — needs sourcing.
 - `content/epigraphs.yaml` → chapter VI epigraph → No candidate at all yet.
 - `content/bibliography.yaml` → Liu & Brailsford (ICCEE 2023) → docs/03 names this reference but gives no paper title — omitted from the bibliography and from the Image Captioning chapter's citations until a title is available.
+- `content/chapters/03-systems/estatemind.mdx` → status → No status badge shown (docs/03 marks it `TODO`) — Shipped / MVP / In progress / Design phase / Concept?
+- `content/chapters/03-systems/estatemind.mdx` → context (team size) → "team DataNova" is shown; the team's size is not.
+- `content/chapters/03-systems/estatemind.mdx` → role (module breakdown) → "Team lead" is shown (confirmed); which specific modules you personally built is not.
+- `content/chapters/03-systems/agrisense-ai.mdx` → roadmap current sprint → the page shows the Sprints 1–5 progress text as given in docs/03, but no graphic highlighting a "current" sprint, since which sprint is current is unconfirmed.
+- `content/chapters/03-systems/ai-research-assistant.mdx` → stack (shadcn/ui) → omitted as a stack chip; docs/03 flags this as unconfirmed.
+- `content/chapters/04-experiments/image-captioning-benchmark.mdx` → status → no status badge shown (docs/03: "Completed?").
+- `content/chapters/04-experiments/image-captioning-benchmark.mdx` → METEOR / CIDEr numbers → dropped from the copy entirely (docs/03's own instruction); only the published BLEU table is shown.
+- `content/chapters/04-experiments/breast-cancer-diagnostic-platform.mdx` → status → no status badge shown.
+- `content/chapters/04-experiments/breast-cancer-diagnostic-platform.mdx` → results/metrics → none published in the source repo; omitted, not estimated.
+- `content/chapters/04-experiments/mars-surface-image-classifier.mdx` → status → no status badge shown.
+- `content/chapters/04-experiments/mars-surface-image-classifier.mdx` → results/metrics → none published; omitted.
+- `content/chapters/04-experiments/productivity-predictor-pipeline.mdx` → status → no status badge shown.
+- `content/chapters/04-experiments/productivity-predictor-pipeline.mdx` → results/metrics → none published; omitted.
+- `content/chapters/03-systems/xpress-ppm-agent.mdx` → architecture diagram / demo assets → none shown; RFC's permission to publish (even with synthetic data) is still pending.
