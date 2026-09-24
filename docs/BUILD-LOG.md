@@ -2,6 +2,60 @@
 
 Resumability anchor for the Phases 1–5 build. If this session is interrupted, read this file first, then the phase checklist below, then resume at the first unchecked item.
 
+## Final report
+
+Phases 1–5 are complete, gated, and committed (`96bf524` … `2e6c7a0`, plus a follow-up documentation commit `9e08009` logging content omissions that were missed on the first pass). Phase 6 ("Ask the book", analytics, deployment) is out of scope per the brief and was not started.
+
+### 1. Phase checklist with gate results
+Full detail in "Phase checklist" below; summary:
+
+| Phase | Status | Lint | Typecheck | Test | Build |
+|---|---|---|---|---|---|
+| 1 — Foundation | ✅ committed `96bf524` | pass | pass | 24/24 pass | pass, TODO-scan clean |
+| 2 — The readable book | ✅ committed `5508e3e` | pass | pass | 24/24 pass | pass, 22 routes, TODO-scan clean |
+| 3 — The scholarly apparatus | ✅ committed `3f95775` | pass | pass | 24/24 pass | pass, 24 routes + Pagefind index, TODO-scan clean |
+| 4 — The knowledge graph | ✅ committed `64db4e2` | pass | pass | 24/24 pass | pass, 25 routes, TODO-scan clean |
+| 5 — Polish | ✅ committed `2e6c7a0` | pass | pass | 24/24 pass | pass, 29 routes, TODO-scan clean |
+
+No phase was started on a red gate.
+
+### 2. Omitted from the site
+**23 facts** were omitted from `content/` because the source docs marked them `TODO` or left them unconfirmed — no visible placeholder was rendered for any of them, per `CLAUDE.md` rule 1. The authoritative, current list is `docs/06-open-questions.md` → "Omitted from the site", one line per fact as `content/<file> → <field> → <question>`. A repo-wide scan (`grep -rn "TODO" content/ out/`) returns nothing, confirming none leaked into content or the exported HTML.
+
+Breakdown: 4 sitewide (photo, availability detail, ESPRIT graduation date, certification issuer) · 1 book title · 3 epigraphs (II, V, VI — no quote text exists yet) · 1 bibliography entry (Liu & Brailsford, no title given) · 3 EstateMind fields (status, team size, personal-role breakdown) · 1 AgriSense field (current sprint) · 1 AI Research Assistant field (shadcn/ui stack confirmation) · 2 Image Captioning fields (status, METEOR/CIDEr numbers) · 6 status/metrics fields across Breast Cancer, Mars, Productivity (2 each) · 1 Xpress PPM field (diagram/demo assets, RFC permission pending).
+
+### 3. Copy to review
+Everything below is Claude-drafted **summary** prose or microcopy restating facts already given in `docs/02`/`docs/03`/`docs/07` — no sentence adds a claim not already in the source docs, but all of it should still be read end-to-end for tone and accuracy before the site is public:
+- **7 chapter abstracts** (`content/chapters/*/index.mdx` → `abstract` field) — one to three sentences each, rendered by `ChapterOpener`.
+- **8 project/study case-study bodies** (`content/chapters/03-systems/*.mdx`, `content/chapters/04-experiments/*.mdx`) — TL;DR, Problem & constraints, Architecture, and results-framing prose throughout.
+- **`content/profile.yaml` → `bio`** — condensed to ~55 words for the Preface and Cover subtitle; check it still reads as your voice, not a summary of your voice.
+- **Preface → "How to read this book"** (`src/app/preface/page.tsx`) — three short paragraphs of original site microcopy (front-to-back / Skim mode / Map), not sourced from any doc field.
+- **`content/chapters/03-systems/ai-research-assistant.mdx` → `links.demo`** shown as a plain, unqualified link — confirm the deployment is public-ready before launch (`docs/06` "Is the live deployment public-ready?").
+- **`content/chapters/03-systems/xpress-ppm-agent.mdx` → `trace` line** ("langgraph → 5 guardrails → pydantic → 102 tests") — assembled from real figures in `docs/03`, styled after `docs/04`'s own example format; not a verbatim quote from any doc.
+
+**Diagrams**: zero ship at launch. The Mermaid→SVG `Figure` pipeline is built but invoked nowhere in `content/` — confirmed via `grep -rl "<Figure" content/` (no matches) and no `.mmd` sources exist anywhere in the repo. Nothing was fabricated to fill the gap; Xpress PPM's diagram is additionally blocked on the RFC's pending permission even for synthetic-data detail.
+
+### 4. Deviations from the docs, with reasons
+All decided by the stated priority order (`CLAUDE.md` → 05 → 04 → 07 → 02/03 → 01 → 06); each is also logged where it was made:
+- **Route `/index` → `/book-index`**: `docs/05` specifies `/index` literally, but that collides with the static export's own root `index.html` on real static file servers (confirmed empirically with `serve`). `CLAUDE.md`'s static-first, ship-what-works mandate outranks the literal route name. See Phase 3 implementation notes.
+- **Book title**: `docs/07`'s working title is unapproved (`TODO: approve`) and omitted; the running header/metadata use the confirmed short name **"Khalil"** instead. `CLAUDE.md` rule 1 (no invented facts) outranks `docs/07`.
+- **`Chapter.epigraph` made optional**, not required as `docs/05`'s literal schema shows — 3 of 7 chapters have no epigraph candidate with actual quote text yet. Forcing the field would mean inventing a placeholder id, which rule 1 forbids.
+- **`Section.safety` field added**, not present in `docs/05`'s literal schema — `CLAUDE.md` rule 7 requires the Breast Cancer safety disclaimer to be "a required, visible field"; `CLAUDE.md` outranks `docs/05` on schema shape.
+- **Zero epigraphs, zero margin notes, zero diagrams render at launch**, despite `docs/07` describing all three. `CLAUDE.md` rule 6 + the user's explicit instruction ("I verify sources myself" / margin notes are "Khalil's to write") outrank `docs/07`'s draft candidates; the diagram pipeline has nothing to render without source `.mmd` files, which don't exist yet (`docs/06`).
+- **`eslint` pinned to 9.39.5, not the current major** — an upstream compatibility gap (`eslint-config-next`'s bundled `eslint-plugin-react` crashes under ESLint 10), not a documented-spec deviation, but worth flagging as technical debt to revisit.
+
+### 5. Lighthouse / axe results
+- **Playwright + @axe-core/playwright**: 61/61 tests passing — 32 axe scans (Cover, one chapter, one project page, `/map` × light/dark × 360/768/1280/1920px), **zero violations** in any scan; full keyboard-only walkthrough passes; zero horizontal overflow at any tested breakpoint; zero console errors in either theme.
+- **Lighthouse** (`@lhci/cli`, desktop preset, Cover / a chapter / `/map`): **100/100/100/100** (Performance/Accessibility/Best Practices/SEO) on all three pages — clear of the ≥95 gate in `docs/05`.
+- **Nothing is currently failing.** The only prior gate miss (Best Practices 96/100 from console 404s on link-prefetch) was root-caused and fixed in Phase 5 (`components/Link.tsx`, `prefetch={false}` default) and re-verified at 100.
+
+### 6. Five highest-value next steps
+1. **Answer the "Decided" and project-specific gaps in `docs/06`** (EstateMind status/team size/role split, statuses for the 4 experiments, AgriSense current sprint, Xpress PPM's RFC publication permission) — these are the fastest way to shrink the 23-entry omission list, each unlocking a status badge or results block that's currently just absent.
+2. **Verify and add real epigraphs** for chapters I–VII, marking each `verified: true` only once Khalil has checked the source — currently all 8 candidates ship `verified: false` and render nothing.
+3. **Commission or source the 4 featured-project architecture diagrams** (Mermaid source is enough per `docs/06`) — the `Figure`/Mermaid→SVG pipeline is built and tested but has never rendered a real diagram end-to-end.
+4. **Set `NEXT_PUBLIC_SITE_URL` to the real production domain** once chosen (`docs/06` "Domain name" is still open) and do a first real deploy to Vercel from the static `out/` — the build has never been checked against a live, non-`example.com` sitemap/OG/JSON-LD.
+5. **Write real margin notes** in Khalil's own voice using the prompts in `docs/07` — the `MarginNote` component and its grid-column placement are built and verified (Phase 5's grid-overflow fix specifically), but zero instances exist in content yet.
+
 ## Conflict resolutions (priority order: CLAUDE.md → 05 → 04 → 07 → 02/03 → 01 → 06)
 - **Book running-header title**: `docs/07`'s working title is marked `TODO: approve`, so it's omitted per the no-visible-TODO rule (`CLAUDE.md` rule 1 + `docs/05` validation). The running header uses the confirmed short name **"Khalil"** instead. Decided by: `CLAUDE.md` rule 1 (no invented facts) + `docs/05` build-fail-on-TODO rule, both outrank `docs/07`'s draft title.
 - **Epigraphs**: all 8 candidates in `docs/07` — including the ones marked "High confidence" — ship with `verified: false`. Decided by: `CLAUDE.md` rule 6 ("Only use epigraphs marked `verified: true`") + explicit user instruction ("I verify sources myself"), which outrank `docs/07`'s confidence annotations.
