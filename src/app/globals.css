@@ -88,7 +88,9 @@ table {
 }
 
 /* Drop cap on a chapter's opening paragraph, with a fallback for browsers
-   that don't support initial-letter. */
+   that don't support initial-letter. Applied automatically to the first
+   paragraph of every chapter body (docs/04) — no per-chapter markup needed. */
+.chapter-article > p:first-of-type::first-letter,
 .drop-cap::first-letter {
   float: left;
   font-family: var(--font-text);
@@ -99,6 +101,7 @@ table {
 }
 
 @supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  .chapter-article > p:first-of-type::first-letter,
   .drop-cap::first-letter {
     float: none;
     -webkit-initial-letter: 3;
@@ -128,4 +131,64 @@ table {
 .skip-link:focus {
   left: 0.5rem;
   top: 0.5rem;
+}
+
+/* Three-column reading layout (docs/04): sticky TOC left, 62-70ch text
+   center, margin column right at >=1200px; TOC becomes a <details>
+   disclosure and margin notes flow inline below that. */
+.chapter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 720px;
+}
+
+@media (min-width: 1200px) {
+  .chapter-grid {
+    /* 200px TOC + 3rem gap + (70ch text + 300px margin-note reserve) */
+    max-width: 1280px;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .chapter-toc {
+    position: sticky;
+    top: 5rem;
+  }
+
+  .chapter-article {
+    max-width: calc(70ch + 300px);
+  }
+
+  .margin-note,
+  .margin-aside {
+    float: right;
+    clear: right;
+    width: 260px;
+    margin-right: -300px;
+    margin-top: 0.25em;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .margin-note,
+  .margin-aside {
+    display: block;
+    border-left: 2px solid var(--rule);
+    padding-left: 0.75rem;
+    margin: 1rem 0;
+  }
+
+  .chapter-toc-desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .chapter-toc-mobile {
+    display: none;
+  }
 }

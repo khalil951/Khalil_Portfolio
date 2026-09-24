@@ -1,10 +1,42 @@
-// Cover page — full build in Phase 2 ("The readable book").
-// Phase 1 scope is the base layout shell only.
-export default function Home() {
+import Link from "next/link";
+import { book, profile } from "#site/content";
+import { KeyFacts } from "@/components/mdx/KeyFacts";
+
+/**
+ * Cover (docs/07 front matter): name, headline, subtitle, edition, three
+ * actions (Begin reading · Contents · Download CV), key facts visible
+ * without scrolling at 1280x720. The Skim mode switch is a Phase 3
+ * deliverable (docs/05) — not wired up yet.
+ */
+export default function CoverPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 measure">
-      <h1 className="font-text text-4xl">Khalil</h1>
-      <p className="mt-4 text-ink-muted">The Book — under construction.</p>
+    <div className="mx-auto max-w-3xl px-4 py-16 measure">
+      <p className="font-ui text-sm text-ink-muted">{book.edition}</p>
+      <h1 className="font-text text-5xl mt-2">{profile.name}</h1>
+      <p className="font-text text-2xl text-ink-muted mt-2">{book.subtitle}</p>
+
+      <nav aria-label="Primary actions" className="mt-8 flex flex-wrap gap-4 font-ui text-sm">
+        <Link
+          href="/chapters/1"
+          className="bg-ink text-paper px-4 py-2 rounded-sm hover:opacity-90 transition-opacity"
+        >
+          Begin reading
+        </Link>
+        <Link href="/contents" className="border border-rule px-4 py-2 rounded-sm hover:border-ink-muted">
+          Contents
+        </Link>
+        <a
+          href="/cv.pdf"
+          download
+          className="border border-rule px-4 py-2 rounded-sm hover:border-ink-muted"
+        >
+          Download CV
+        </a>
+      </nav>
+
+      <div className="mt-10">
+        <KeyFacts />
+      </div>
     </div>
   );
 }

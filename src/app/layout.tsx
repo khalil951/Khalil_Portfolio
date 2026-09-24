@@ -43,12 +43,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="en"
       className={`${newsreader.variable} ${inter.variable} ${jetbrainsMono.variable} h-full`}
+      suppressHydrationWarning
     >
       <head>
         {/* Pre-paint theme script — avoids a flash of the wrong theme. */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <a href="#main" className="skip-link font-ui">
           Skip to content
         </a>
