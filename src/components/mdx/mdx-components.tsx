@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef } from "react";
+import { Certifications } from "./Certifications";
 import { Cite } from "./Cite";
 import { Figure } from "./Figure";
 import { KeyFacts } from "./KeyFacts";
@@ -21,6 +22,7 @@ export function createMdxComponents({ chapterNumber }: { chapterNumber?: number 
   let subsectionIndex = 0;
 
   return {
+    Certifications,
     Cite,
     Figure,
     KeyFacts,

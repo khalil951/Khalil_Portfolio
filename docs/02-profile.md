@@ -22,6 +22,9 @@ Data Science Engineering student at ESPRIT in Tunis, focused on LLM applications
 - **Researcher — Happy City Hub** (`2026`)
   - Worked on research focused on measuring and improving how people experience their cities.
   - Focus areas: urban research, data collection, resident engagement, and policy recommendations.
+- **Youth Trainer — SMU** (`2025`) *(added 2026-09-25, source: Khalil directly)*
+  - Trained youth participants in a bootcamp format, covering technical material to a non-specialist audience.
+  - Learned to translate complex technical concepts into simple, accessible ideas for beginners.
 - **Research Software Engineer Intern — Talan Tunisie** (`Jul–Sep 2024`) *(title and dates per CV, confirmed 2026-09-24)*
   - Led development of DaaS (DNA as a Service), a data-storage concept based on converting data into DNA sequences and embedding it in plants rather than relying on traditional data centers.
   - The project received first prize at the Talan Innovation Summer Camp 2024.
@@ -34,7 +37,7 @@ Data Science Engineering student at ESPRIT in Tunis, focused on LLM applications
 
 ## Timeline
 - **2026:** AI Engineer Intern at RFC; Researcher at Happy City Hub; Intelligent Planet Hackathon participant, selected among more than 2,000 participants.
-- **2025:** Global UGRAD exchange-program participant at the University of North Carolina at Greensboro; achieved a 3.92 GPA during the exchange semester.
+- **2025:** International exchange semester at the University of North Carolina at Greensboro (3.92 GPA); Youth Trainer at SMU.
 - **2024:** Research Software Engineer Intern at Talan Tunisie; led the DaaS project and won first prize at the Talan Innovation Summer Camp.
 - **2023:** Data Analyst Intern at FelCloud.
 - **2022:** Data Entry Intern at Attijari Bank.
@@ -42,24 +45,29 @@ Data Science Engineering student at ESPRIT in Tunis, focused on LLM applications
 
 ## Education
 - **ESPRIT School of Engineering**, Tunis — Engineering degree, Data Science. Final year. `2021 – present` *(source: CV)*; expected graduation `TODO`
-  - Relevant coursework: Time Series Analysis (Box-Jenkins, SARIMA, ADF/KPSS), Linear Programming, Computer Security, Networks & Services Administration, Spring Boot, Project Management (PMBOK, EVM, CPM)
-- **U.S. Department of State Global UGRAD** — exchange semester, University of North Carolina at Greensboro. `term:Spring 2025` · GPA 3.92/4.00, fully funded *(source: CV)*
+  - Relevant coursework: Time Series Analysis (Box-Jenkins, SARIMA, ADF/KPSS), Linear Programming, Computer Security, Networks & Services Administration, Spring Boot, Project Management (PMBOK, EVM, CPM), Machine Learning, Deep Learning, Large Language Models *(ML/DL/LLMs added 2026-09-25, source: Khalil directly — ML/DL also appear on the CV's coursework line)*
+- **University of North Carolina at Greensboro** — International Exchange Program (Spring Semester), `Spring 2025` · GPA 3.92/4.00 · relevant coursework: Statistics, Computer Science, Psychology, Black historic music *(reframed 2026-09-25 as plainly an exchange program — the "Global UGRAD" / U.S. Department of State / fully-funded / selectivity framing now lives in Awards & recognition below, as an achievement rather than an education line)*
 - **Certifications** *(source: CV)*: DataCamp Data Science Associate · Neo4j Fundamentals · Neural Networks and Deep Learning — `TODO: issuer for the last one`
 
 
 ## Awards & recognition
 - 🥇 **1st place — Talan Tunisia Innovation Summer Camp 2024** — project: DaaS (DNA as a Service); 1st of 10 teams *(sources: Experience section above + CV)*
 - **Intelligent Planet Hackathon, Saudi Arabia (2026)** — selected among 2,000+ participants; presented a working AgriSense AI prototype *(sources: Timeline above + CV)* — `TODO: any placement/prize? if none, say "participant"`
-- **Global UGRAD** scholarship selection (U.S. Department of State)
+- **Global UGRAD scholarship selection** (U.S. Department of State) — a fully-funded scholarship; roughly 200 students selected worldwide, 3 from Tunisia *(stat added 2026-09-25, source: Khalil directly)*
 
 ## Leadership & community
 - **AIESEC in Tunisia (Bardo)** — oGT Team Leader, 2023–2024: led a five-person team running outgoing-exchange participant operations and outreach; built a CRM system and a supply & demand dashboard; coordinated with international AIESEC entities *(sources: CV + Soft skills below)*
+- **Volunteering** *(added 2026-09-25, source: Khalil directly)*: Enactus · Tunisian Red Crescent (blood-donation campaigns, disaster-relief efforts, health-awareness programmes — see Soft skills below) · helped organise International Student Week in Tunisia (ISWIT), 2023, for more than 20 participants (see Soft skills below)
 - Active in the Tunis tech & startup community; international hackathons
 
 ## Currently exploring (feeds Chapter VII — confirmed 2026-09-24)
 - How does PagedAttention change serving economics?
 - Why does GRPO favour long answers?
 - What is autograd actually computing (VJPs)?
+
+## Interests (added 2026-09-25, source: Khalil directly — feeds Chapter VII's closing section)
+- Reading is a genuine hobby — favours psychology and philosophy novels; favourite author is Dostoevsky.
+- Other hobbies: soccer, watching anime, writing on Substack, listening to progressive rock.
 
 ## Site copy rules decided 2026-09-24
 - Omit the CV's non-measured claims: Talan "targeting 95% energy reduction" and FelCloud "improving projected sales by 20%".

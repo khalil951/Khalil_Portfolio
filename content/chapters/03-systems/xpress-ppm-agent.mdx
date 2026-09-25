@@ -15,12 +15,6 @@ related: ["ai-research-assistant", "estatemind"]
 trace: "langgraph → 5 guardrails → pydantic → 102 tests"
 links:
   repo: "https://github.com/khalil951/Xpress_PPM_Agent"
-results:
-  observed:
-    - "Deterministic guardrail rules can override the LLM's verdict when a blocking violation fires — the model proposes, the rules dispose."
-    - "A 4-model OpenRouter fallback chain keeps the agent responding when a primary model is unavailable."
-  pending:
-    - "Evaluation run — results pending publication (LLM-as-judge, semantic similarity, weight sweep, BLEU/ROUGE, cross-model agreement, latency)."
 ---
 
 ## TL;DR
@@ -49,10 +43,6 @@ C1 is one tier of a larger, only-partly-built design: a 17-agent tiered portfoli
 - **Hybrid over all-Copilot-Studio.** An earlier all-conversational design couldn't guarantee determinism or testability. Splitting the conversational and decision tiers made both properties possible.
 - **Guardrails outrank the model.** The five blocking rules are checked in code, not asked of the LLM — a request that fails one is rejected regardless of what the model would have said.
 - **Verify endpoints before finalizing a fallback chain.** Two of the original fallback models turned out to have no live endpoints and were swapped out — a lesson about validating a chain's assumptions before relying on them.
-
-## Results
-
-Observed behaviour only — see the frontmatter results above. A full evaluation (LLM-as-judge scoring, semantic similarity, a weight sweep, BLEU/ROUGE, cross-model agreement, and latency) has been run but its results aren't exported yet, so nothing is shown as a number.
 
 ## Limitations & next steps
 

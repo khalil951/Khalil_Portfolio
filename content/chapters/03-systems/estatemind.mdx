@@ -12,14 +12,6 @@ concepts: ["explainability", "leakage-free-training", "retrieval-augmented-gener
 related: ["xpress-ppm-agent", "ai-research-assistant"]
 links:
   repo: "https://github.com/khalil951/EstateMind"
-results:
-  measured:
-    - "Appartement (CatBoost): test R² 0.53, train R² 0.99, on 5,312 train / 1,353 test rows."
-    - "Maison (ExtraTrees): test R² 0.49, train R² 1.00, on 1,915 train / 496 test rows."
-    - "Terrain (ExtraTrees): test R² 0.37, train R² 1.00, on 817 train / 162 test rows."
-    - "Global fallback (CatBoost): test R² 0.47, train R² 1.00, on 8,044 train / 2,011 test rows."
-  pending:
-    - "Legal RAG evaluation (retrieval recall@k / precision@k, LLM-as-judge groundedness) — the command exists; no published output yet."
 ---
 
 ## TL;DR
@@ -34,7 +26,7 @@ Tunisian real-estate intelligence — pricing, legal context, market trends — 
 
 ## Architecture
 
-- **Valuation pipeline:** CLIP (`openai/clip-vit-base-patch32`) zero-shot image verification → TF-IDF description sentiment → per-property-type CatBoost / ExtraTrees models with a global fallback → market comparables → confidence scoring → SHAP price drivers → what-if scenarios. Training is <Term id="leakage-free-training">leakage-free</Term>: no price-derived input features, and neighbourhood price priors are fit on the training fold only, with leave-one-out self-exclusion.
+- **Valuation pipeline:** CLIP (`openai/clip-vit-base-patch32`) zero-shot image verification → BERT description sentiment (fine-tuned on data generated from the dataset) → per-property-type CatBoost / ExtraTrees models with a global fallback → market comparables → confidence scoring → SHAP price drivers → what-if scenarios. Training is <Term id="leakage-free-training">leakage-free</Term>: no price-derived input features, and neighbourhood price priors are fit on the training fold only, with leave-one-out self-exclusion.
 - **Legal RAG assistant** over Tunisian corporate/securities/tax law (23 articles): `paraphrase-multilingual-mpnet-base-v2` embeddings over a French/Arabic corpus, ChromaDB with a cosine relevance threshold, and a generation <Term id="fallback-chain">fallback chain</Term> — a hosted OpenAI-compatible provider, then OpenRouter, then an extractive fallback built directly from retrieved passages when every LLM is unreachable.
 - **Data acquisition:** scrapers for Mubawab, Tayara, Tecnocasa, Tunisie Annonce and Bigdatis on a shared retry/backoff client, feeding a dedup → wrangle → load pipeline.
 - **Market analytics:** an interactive price/demand heatmap and delegation analytics, delegation/governorate price forecasting, a local rule-based chatbot, and a Mesa multi-agent market simulation.
@@ -46,22 +38,9 @@ Tunisian real-estate intelligence — pricing, legal context, market trends — 
 - **An extractive fallback for the legal assistant.** When every hosted LLM is unreachable, the system still answers from retrieved passages directly rather than failing outright.
 - **Per-property-type models with a global fallback.** Appartement, Maison and Terrain each get their own model; a global CatBoost model covers whatever falls outside those types.
 
-## Results
-
-<Term id="explainability">SHAP</Term>-explained valuation results, per property type (test R² from `training_estateprocessor_results.csv`):
-
-| Scope | Served model | Train rows | Test rows | Test R² | Train R² |
-|---|---|---:|---:|---:|---:|
-| Appartement | CatBoost | 5,312 | 1,353 | 0.53 | 0.99 |
-| Maison | ExtraTrees | 1,915 | 496 | 0.49 | 1.00 |
-| Terrain | ExtraTrees | 817 | 162 | 0.37 | 1.00 |
-| Global fallback | CatBoost | 8,044 | 2,011 | 0.47 | 1.00 |
-
-**Limitation, shown honestly:** the training script itself flags every model `fit_status: overfitting` — train R² is around 0.99–1.00 against test R² of 0.37–0.53. Ridge baselines scored negative R². RMSE/MAE are withheld until their units are confirmed. Legal RAG evaluation numbers aren't published yet.
-
 ## Limitations & next steps
 
-Sentiment analysis is still TF-IDF; a planned BERT upgrade isn't built. The legal corpus covers 23 articles and isn't a general real-estate law corpus. The public legal endpoint has no rate limiting yet.
+<Term id="explainability">SHAP</Term>-explained valuation is honest about its own overfitting: the training script flags every model `fit_status: overfitting` — train R² around 0.99–1.00 against test R² of 0.37–0.53, depending on property type. Ridge baselines scored negative R². RMSE/MAE are withheld until their units are confirmed. The description-sentiment model has since moved from TF-IDF to a fine-tuned BERT model, trained on data generated from the dataset — but it now shows the same pattern: low scores against the test set. Legal RAG evaluation numbers aren't published yet. The legal corpus covers 23 articles and isn't a general real-estate law corpus. The public legal endpoint has no rate limiting yet.
 
 ## Links
 

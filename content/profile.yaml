@@ -47,11 +47,18 @@ education:
       - "Networks & Services Administration"
       - "Spring Boot"
       - "Project Management (PMBOK, EVM, CPM)"
-  - institution: "U.S. Department of State Global UGRAD"
-    location: "University of North Carolina at Greensboro"
-    program: "Exchange semester"
+      - "Machine Learning"
+      - "Deep Learning"
+      - "Large Language Models"
+  - institution: "University of North Carolina at Greensboro"
+    program: "International Exchange Program (Spring Semester)"
     period: "Spring 2025"
-    note: "GPA 3.92/4.00, fully funded"
+    note: "GPA 3.92/4.00"
+    coursework:
+      - "Statistics"
+      - "Computer Science"
+      - "Psychology"
+      - "Black historic music"
 
 certifications:
   - name: "DataCamp Data Science Associate"
@@ -64,7 +71,7 @@ awards:
   - title: "Intelligent Planet Hackathon, Saudi Arabia (2026)"
     detail: "Selected among 2,000+ participants; presented a working AgriSense AI prototype (participant)"
   - title: "Global UGRAD scholarship selection"
-    detail: "U.S. Department of State"
+    detail: "U.S. Department of State; a fully-funded scholarship, roughly 200 students selected worldwide and 3 from Tunisia"
 
 leadership:
   - role: "oGT Team Leader — AIESEC in Tunisia (Bardo)"

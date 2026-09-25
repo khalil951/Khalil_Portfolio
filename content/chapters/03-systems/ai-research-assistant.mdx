@@ -14,13 +14,6 @@ trace: "langgraph → chromadb → fail-closed → 3 answer states"
 links:
   repo: "https://github.com/khalil951/AI_Research_Assistant"
   demo: "https://ai-research-assistant-nu-opal.vercel.app"
-results:
-  observed:
-    - "The local judge model sometimes under-judges relevance, which fails closed rather than over-claiming groundedness."
-    - "A \"Key Concepts ranking gap\" affects roughly half of grounded evaluation questions."
-    - "The web-search fallback path has no relevance gate yet."
-  pending:
-    - "An evaluation harness exists (precision@k / recall@k, BLEU/ROUGE, LLM-judge), but no numbers are published yet."
 ---
 
 ## TL;DR
@@ -45,13 +38,9 @@ Product work behind the build includes a PRD, three personas, user stories, an M
 - **Local-first LLM, cloud fallback.** Ollama keeps the assistant answerable without a network dependency; OpenRouter is there when the local model isn't enough — replacing an earlier direct Claude API integration (ADR-007).
 - **Show the design gap, not just the fix.** A Figma review surfaced 16 findings — including an icon collision between the Uncertain and Error states, and missing focus states — being fixed before the frontend build. Publishing that review is itself a demonstration of the project's honesty principle.
 
-## Results
-
-An evaluation harness exists (precision@k / recall@k, BLEU/ROUGE, LLM-as-judge) but no numbers are published in the repository yet, so results stay in the Pending state. Known, documented limitations: the local judge model sometimes under-judges relevance (by design, it fails closed rather than over-claiming); a "Key Concepts ranking gap" affects roughly half of grounded evaluation questions; the web-search fallback path has no relevance gate yet.
-
 ## Limitations & next steps
 
-The 16 Figma findings from the design review are being fixed before the frontend build proceeds further. Whether shadcn/ui is still part of the stack, and whether the live deployment below is public-ready, haven't been confirmed yet.
+An evaluation harness exists (precision@k / recall@k, BLEU/ROUGE, LLM-as-judge) but no numbers are published in the repository yet. Known, documented limitations: the local judge model sometimes under-judges relevance (by design, it fails closed rather than over-claiming); a "Key Concepts ranking gap" affects roughly half of grounded evaluation questions; the web-search fallback path has no relevance gate yet. The 16 Figma findings from the design review are being fixed before the frontend build proceeds further. Whether shadcn/ui is still part of the stack, and whether the live deployment below is public-ready, haven't been confirmed yet.
 
 ## Links
 

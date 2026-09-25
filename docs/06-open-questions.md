@@ -6,7 +6,7 @@ Last pass: 2026-09-24, checked against `Khalil.CV 3.pdf` and github.com/khalil95
 ## Decided (2026-09-24)
 - ✅ Concept: **The Book**. "The Trace" is retired.
 - ✅ Display name: **Mohamed Khalil Oueslati**
-- ✅ RFC: July 1 – August 31, 2026, on-site in Tunis. Xpress PPM evaluation was run, but results aren't exported yet → site shows "results pending publication".
+- ✅ RFC: July 1 – August 31, 2026, on-site in Tunis. Xpress PPM evaluation was run, but results aren't exported yet — no results block is shown at all as of 2026-09-25 (see "Decided (2026-09-25)" below).
 - ✅ Talan title: **Research Software Engineer Intern**, Jul–Sep 2024. FelCloud: Jun–Jul 2023.
 - ✅ Omit the non-measured CV claims (Talan 95% energy target, FelCloud +20% projected sales).
 - ✅ Toolkit adds PostgreSQL/pgvector, ChromaDB and SQLite, each linked to project evidence.
@@ -14,12 +14,20 @@ Last pass: 2026-09-24, checked against `Khalil.CV 3.pdf` and github.com/khalil95
 - ✅ Chapter IV: Image Captioning · Breast Cancer · Mars · Productivity. Wifaq dropped.
 - ✅ "On Teaching" chapter dropped for v1, so the book is now **7 chapters** (07 and 05 renumbered).
 - ✅ Chapter VII questions kept (PagedAttention, GRPO, VJPs) → `02 → Currently exploring`
-- ✅ EstateMind: the `EstateMind` repo is the only source (README + `CLAUDE.md` + results CSV); no demo link. Measured test R² 0.37–0.53, shown with the overfitting flag.
+- ✅ EstateMind: the `EstateMind` repo is the only source (README + `CLAUDE.md` + results CSV); no demo link. Measured test R² 0.37–0.53; the R² table itself no longer displays as of 2026-09-25 (see below), but the overfitting finding survives as a sentence in Limitations.
 - ✅ Teaching pillar removed from the positioning (01). GOMYCODE stays as one line in the bio.
 - ✅ **No visible TODOs on the site.** Unknown facts are omitted and listed below under "Omitted from the site".
 - ✅ Image captioning dataset: Flickr8k
-- ✅ Statuses: AI Research Assistant → MVP; AgriSense In progress (README progress)
+- ✅ Statuses: AI Research Assistant → MVP; AgriSense → MVP *(updated 2026-09-25, source: Khalil directly — was "In progress")*
 - ✅ Email, LinkedIn, Talan 2024 award, hackathon 2026, AIESEC 2023–24, ESPRIT 2021, UGRAD Spring 2025 (GPA 3.92), repo URLs
+
+## Decided (2026-09-25)
+- ✅ Chapter III project pages (Xpress PPM Agent, AgriSense AI, AI Research Assistant, EstateMind) no longer show a Measured/Observed/Pending results block or a "## Results" heading — a content decision by Khalil, not a missing-fact omission. Substantive facts that were only stated inside a "## Results" section (EstateMind's overfitting disclosure; AI Research Assistant's known limitations) were folded into each page's existing "Limitations & next steps" section instead of being deleted. Chapter IV (the 4 experiments/studies) is unaffected — Image Captioning's BLEU table, for example, still shows.
+- ✅ New SMU "Youth Trainer" role (2025) added to Chapter II.
+- ✅ UNC Greensboro exchange reframed in Chapter V as plainly an international exchange program (GPA + coursework); the "Global UGRAD" / U.S. Department of State / fully-funded / ~200-worldwide-3-from-Tunisia selectivity framing moved to Chapter VI as an achievement.
+- ✅ ESPRIT coursework gains Machine Learning, Deep Learning, Large Language Models; Chapter V gains a Certifications section (the 3 CV certifications, already in `profile.yaml`, were never rendered anywhere until now).
+- ✅ Chapter VI gains §6.4 (Global UGRAD Scholarship) and §6.5 (Volunteering: Enactus, Tunisian Red Crescent, ISWIT), plus a photo under each of the 4 accomplishment sections (6.1–6.4), sourced from `docs/assets/Images/`.
+- ✅ Chapter VII gains a closing section on the book-design choice and personal interests (reading, Dostoevsky, soccer, anime, Substack, progressive rock).
 
 ## Update outside the docs
 - [ ] **CV**:

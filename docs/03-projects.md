@@ -31,7 +31,7 @@ Reason: lead with the most *built and tested* work; design-phase work comes afte
 - **Assets:** `TODO` architecture diagram, demo GIF/video (synthetic data only), confirm RFC permission to publish
 
 ## 2. AgriSense AI — multi-agent irrigation management for desert agriculture
-- **slug:** `agrisense-ai` · **tier:** featured · **status:** In progress · **context:** Hackathon origin → portfolio build
+- **slug:** `agrisense-ai` · **tier:** featured · **status:** MVP *(updated 2026-09-25, source: Khalil directly — was "In progress")* · **context:** Hackathon origin → portfolio build
 - **Progress (from repo README, Sept 2026):** Sprints 1–5 built — Postgres + pgvector schema, FastMCP weather/soil/ET₀ tools on live Open-Meteo & SoilGrids, LangGraph weather/soil → scheduling nodes (FAO-56 ET₀ × Kc water balance), `decision_agent` with RAG, farm/crop CRUD, `/recommend`, `/runs`, `/schedules`, `POST /chat`, dashboard/chat/history UI. Runs locally via Docker Compose; no public deployment; Langfuse still commented out. `TODO: confirm the current sprint name/number for the roadmap graphic`
 - **Demo farm correction (README):** 26.40°N, 44.10°E in Qassim, ~14 km from Buraydah centre (SoilGrids has no data for the city-centre point).
 - **Recognition:** Presented at the Intelligent Planet Hackathon, Saudi Arabia
@@ -46,7 +46,7 @@ Reason: lead with the most *built and tested* work; design-phase work comes afte
   - Demo farm: Buraydah, Qassim (Saudi Arabia's top date-producing region), validated against a published Penman-Monteith date-palm Kc field study.
 - **Key decisions:** date palm first (near-constant Kc, Vision 2030 framing) → alfalfa in phase 2 (multi-cut dynamic Kc); pgvector over a dedicated vector DB at demo scale; real APIs over synthetic data for credibility.
 - **Artifacts produced:** Brain.md, architecture.md, design.md (schema, API contracts, LangGraph state), implementation-plan.md (staged roadmap with benchmark gates), agriculture-primer.md.
-- **Results:** `TODO` — none yet; show roadmap with current stage highlighted.
+- **Results:** none published; the site's Chapter III project pages no longer show a Results/Pending block at all *(decided 2026-09-25 — see docs/06 "Site copy rules")*.
 - **Stack:** Python, LangGraph, FastAPI, FastMCP, PostgreSQL + pgvector, Ollama, Langfuse, Next.js, TypeScript, Docker
 - **Repo:** https://github.com/khalil951/Agrisense
 
@@ -89,7 +89,7 @@ Reason: lead with the most *built and tested* work; design-phase work comes afte
 
   The training script itself flags every model `fit_status: overfitting` (train R² ≈ 0.99 vs test 0.37–0.53). Ridge baselines were negative R². **Show this honestly as a limitation**, and put error metrics (RMSE/MAE) aside until their units are confirmed.
 - **Results — Pending:** legal RAG eval numbers (the command exists; no published output).
-- **Limitations (repo):** overfitting above; sentiment is still TF-IDF (the planned BERT upgrade isn't built); legal corpus is 23 articles and not real-estate law; the public legal endpoint has no rate limiting.
+- **Limitations (repo):** overfitting above; the description-sentiment model has moved from TF-IDF to a fine-tuned BERT model (trained on data generated from the dataset), but it now shows low scores against the test set *(updated 2026-09-25, source: Khalil directly — was "still TF-IDF, planned BERT upgrade isn't built")*; legal corpus is 23 articles and not real-estate law; the public legal endpoint has no rate limiting.
 - **Process:** technical architecture audit; 18-task implementation checklist; pitch deck; 101-page capstone report.
 - **Stack (repo):** Python, Django 4.2 + DRF, SimpleJWT, PostgreSQL / SQLite, CatBoost, scikit-learn (ExtraTrees), XGBoost, SHAP, PyTorch + torchvision, CLIP, sentence-transformers, ChromaDB, OpenRouter, Mesa, Stripe, React 18 (Create React App), Tailwind CSS, Recharts
 - **Your role:** `TODO: which modules you personally built`
